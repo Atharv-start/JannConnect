@@ -1,0 +1,29 @@
+import Navbar from "./Navbar"
+import Footer from "./Footer"
+import FloatingAccessibilityButton from "./FloatingAccessibilityButton"
+import { useTheme } from "../context/ThemeContext"
+
+export default function Layout({ children }) {
+  const { theme } = useTheme()
+
+  const isDark = theme === "dark"
+
+  return (
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        isDark
+          ? "bg-gradient-to-b from-slate-900 to-black text-white"
+          : "bg-gray-100 text-black"
+      }`}
+    >
+      <Navbar />
+
+      <main className="pt-28">
+        {children}
+      </main>
+
+      <Footer />
+      <FloatingAccessibilityButton />
+    </div>
+  )
+}
