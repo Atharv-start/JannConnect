@@ -3,7 +3,7 @@
 ### One Platform for Government & NGO Welfare Schemes
 
 🔗 **Live Demo:**
-`[JannConnect](https://jannconnect.netlify.app)`
+[JannConnect](https://jannconnect.netlify.app)
 
 ---
 
