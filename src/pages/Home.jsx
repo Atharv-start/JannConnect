@@ -17,8 +17,8 @@ export default function Home() {
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 pt-24 text-center">
         <h1 className="text-5xl font-bold leading-tight text-gray-900 dark:text-white">
-          Schemes <br />
-          <span className="text-green-500">Made Easy</span>
+          {t.heroTitle1} <br />
+          <span className="text-green-500">{t.heroTitle2}</span>
         </h1>
 
         <button

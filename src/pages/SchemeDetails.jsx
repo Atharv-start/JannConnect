@@ -61,12 +61,14 @@ export default function SchemeDetails() {
       <div className="mt-8 border rounded-xl p-6">
         {activeTab === "overview" && (
           <p>
-            {scheme.simpleExplanation?.[lang]}
+            {scheme.simpleExplanation?.[lang] || scheme.simpleExplanation?.en || t.noOverview}
           </p>
         )}
 
         {activeTab === "benefits" && (
-          <p>{scheme.benefits}</p>
+          <p>
+            {scheme.benefits?.[lang] || scheme.benefits?.en || t.noBenefits}
+          </p>
         )}
 
         {activeTab === "eligibility" && (
@@ -84,31 +86,35 @@ export default function SchemeDetails() {
                 </li>
               ))
             ) : (
-              <li>No eligibility conditions</li>
+              <li>{t.noEligibility}</li>
             )}
           </ul>
         )}
 
         {activeTab === "documents" && (
           <ul className="list-disc ml-6">
-            {scheme.documentsRequired?.length
-              ? scheme.documentsRequired.map(
-                  (d, i) => (
-                    <li key={i}>{d}</li>
-                  )
+            {(scheme.documentsRequired && scheme.documentsRequired.length > 0) ? (
+              scheme.documentsRequired.map(
+                (d, i) => (
+                  <li key={i}>{d}</li>
                 )
-              : "No documents required"}
+              )
+            ) : (
+              <p>{t.noDocuments}</p>
+            )}
           </ul>
         )}
 
         {activeTab === "steps" && (
-          <ol className="list-decimal ml-6">
-            {scheme.applicationProcess?.map(
-              (s, i) => (
-                <li key={i}>{s}</li>
-              )
-            )}
-          </ol>
+          (scheme.applicationProcess && scheme.applicationProcess.length > 0) ? (
+            <ol className="list-decimal ml-6 space-y-2">
+              {scheme.applicationProcess.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ol>
+          ) : (
+            <p>No application steps available.</p>
+          )
         )}
       </div>
 

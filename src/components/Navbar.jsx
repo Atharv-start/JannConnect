@@ -85,13 +85,13 @@ export default function Navbar() {
             {user ? (
               <>
                 <span className="text-sm font-medium">
-                  Hi, {user.name}
+                  {t.greeting}, {user.name}
                 </span>
                 <button
                   onClick={logout}
                   className="px-3 py-2 border border-gray-300 dark:border-white/20 rounded text-sm"
                 >
-                  Logout
+                  {t.logout}
                 </button>
               </>
             ) : (

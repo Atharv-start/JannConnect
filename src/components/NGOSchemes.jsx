@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom"
+import { useLanguage } from "../context/LanguageContext"
 import schemes from "../data/schemes"
 
 export default function NGOSchemes() {
+  const { t } = useLanguage()
   const navigate = useNavigate()
 
   const ngoSchemes = schemes.filter(s => s.type === "ngo")
@@ -11,7 +13,7 @@ export default function NGOSchemes() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
       <h2 className="text-3xl font-bold mb-10">
-        NGO Schemes
+        {t.ngoSchemesTitle}
       </h2>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
