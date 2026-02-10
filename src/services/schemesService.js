@@ -8,25 +8,35 @@ import {
 
 // Fetch all schemes
 export async function getAllSchemes() {
-  const querySnapshot = await getDocs(
-    collection(db, "schemes")
-  )
+  try {
+    const querySnapshot = await getDocs(
+      collection(db, "schemes")
+    )
 
-  return querySnapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data(),
-  }))
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+  } catch (error) {
+    console.error("Error fetching schemes:", error)
+    return []
+  }
 }
 
 // Fetch single scheme by ID
 export async function getSchemeById(id) {
-  const docRef = doc(db, "schemes", id)
-  const docSnap = await getDoc(docRef)
+  try {
+    const docRef = doc(db, "schemes", id)
+    const docSnap = await getDoc(docRef)
 
-  if (!docSnap.exists()) return null
+    if (!docSnap.exists()) return null
 
-  return {
-    id: docSnap.id,
-    ...docSnap.data(),
+    return {
+      id: docSnap.id,
+      ...docSnap.data(),
+    }
+  } catch (error) {
+    console.error("Error fetching scheme:", error)
+    return null
   }
 }

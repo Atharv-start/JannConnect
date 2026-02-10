@@ -41,11 +41,10 @@ export default function SearchResults() {
             s.type.toLowerCase() === activeTab
         )
     ).filter(s => {
+      // category filter (fixed)
       if (!categoryParam) return true
-      if (!s.targetGroup) return true
-      return s.targetGroup.includes(
-        categoryParam.toLowerCase()
-      )
+      if (!s.category) return true
+      return s.category.includes(categoryParam)
     })
 
   return (
