@@ -10,7 +10,7 @@ const translations = {
     heroTitle2: "Made Easy",
     heroDesc:
       "Discover, understand, and apply for government and NGO schemes.",
-    findSchemes: "Find Schemes For You",
+    findSchemes: "View Schemes",
     searchResults: "Search Results",
     filters: "Filters",
 
@@ -61,7 +61,7 @@ const translations = {
     heroTitle2: "अब आसान",
     heroDesc:
       "सरकारी और एनजीओ योजनाओं को खोजें और समझें।",
-    findSchemes: "आपके लिए योजनाएं खोजें",
+    findSchemes: "योजनाएँ देखें",
     searchResults: "खोज परिणाम",
     filters: "फ़िल्टर",
 
