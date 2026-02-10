@@ -9,24 +9,26 @@ export default function FloatingAccessibilityButton() {
   return (
     <>
       {/* Floating Button */}
-      <button
-        onClick={() => setOpen(true)}
-        className="fixed right-4 top-24
-                   z-[9999]
-                   w-15 h-15
-                   rounded-full
-                   text-white
-                   text-xl
-                   font-bold
-                   shadow-xl
-                   hover:scale-105 transition"
-        aria-label="Accessibility options"
-      >
-        <img
-          src={Accessibility}
-          className="w-full h-full p-2 object-contain"
-        />  
-      </button>
+      {!open && (
+  <button
+    onClick={() => setOpen(true)}
+    className="fixed right-4 top-24
+               z-[9999]
+               w-15 h-15
+               rounded-full
+               text-white
+               text-xl
+               font-bold
+               shadow-xl
+               hover:scale-105 transition"
+    aria-label="Accessibility options"
+  >
+    <img
+      src={Accessibility}
+      className="w-full h-full p-2 object-contain"
+    />
+  </button>
+)}
 
       {open && (
         <AccessibilityPanel onClose={() => setOpen(false)} />
