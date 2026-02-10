@@ -1,12 +1,14 @@
-export default function About() {
+import { useNavigate } from "react-router-dom"
+
+export default function AboutSection() {
+  const navigate = useNavigate()
+
   return (
     <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
-      
-      {/* Text content */}
       <div>
-        <h1 className="text-4xl font-bold text-green-500 mb-6">
+        <h2 className="text-4xl font-bold text-green-500 mb-6">
           About
-        </h1>
+        </h2>
 
         <p className="text-gray-300 leading-relaxed mb-4">
           JannConnect is a National Platform that aims to offer
@@ -26,12 +28,14 @@ export default function About() {
           scheme without visiting multiple government websites.
         </p>
 
-        <button className="mt-6 px-6 py-3 border border-white/30 rounded-lg hover:bg-white/10 transition">
+        <button
+          onClick={() => navigate("/about")}
+          className="mt-6 px-6 py-3 border border-white/30 rounded-lg hover:bg-white/10 transition"
+        >
           View More →
         </button>
       </div>
 
-      {/* Video/illustration block */}
       <div className="relative">
         <div className="rounded-xl overflow-hidden border border-white/10 shadow-lg">
           <img
@@ -41,7 +45,6 @@ export default function About() {
           />
         </div>
 
-        {/* Play button overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white text-2xl shadow-lg">
             ▶

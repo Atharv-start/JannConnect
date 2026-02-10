@@ -1,7 +1,9 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-export default function FAQs() {
+export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(null)
+  const navigate = useNavigate()
 
   const faqs = [
     {
@@ -10,43 +12,40 @@ export default function FAQs() {
     },
     {
       q: "How will JannConnect help common citizens?",
-      a: "It simplifies scheme discovery by showing eligibility, benefits, required documents, and application steps in one place.",
+      a: "It simplifies scheme discovery by showing eligibility, benefits, required documents, and application steps.",
     },
     {
       q: "Can I apply for schemes through JannConnect?",
-      a: "JannConnect provides official application links. Applications are completed on the official scheme portals.",
+      a: "JannConnect provides official links. Applications are completed on official scheme portals.",
     },
     {
       q: "How does JannConnect work?",
-      a: "You can search or filter schemes based on your profile. The platform then shows schemes you may be eligible for.",
+      a: "You can search or filter schemes based on your profile to see relevant schemes.",
     },
     {
       q: "What information can I find about a scheme?",
-      a: "You can see benefits, eligibility, documents required, and step-by-step application instructions.",
+      a: "Benefits, eligibility, documents required, and application steps.",
     },
   ]
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
-      
-      {/* Illustration */}
       <div className="hidden md:block">
         <img
           src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5"
-          alt="FAQ illustration"
+          alt="FAQ"
           className="w-full max-w-md mx-auto"
         />
       </div>
 
-      {/* FAQ content */}
       <div>
         <p className="text-gray-400 mb-2">
           Frequently Asked Questions
         </p>
 
-        <h1 className="text-4xl font-bold mb-8">
+        <h2 className="text-4xl font-bold mb-8">
           Checkout our knowledge base for some of your answers!
-        </h1>
+        </h2>
 
         <div className="space-y-4">
           {faqs.map((item, index) => (
@@ -77,7 +76,10 @@ export default function FAQs() {
           ))}
         </div>
 
-        <button className="mt-8 px-6 py-3 border border-white/30 rounded-lg hover:bg-white/10 transition">
+        <button
+          onClick={() => navigate("/faqs")}
+          className="mt-8 px-6 py-3 border border-white/30 rounded-lg hover:bg-white/10 transition"
+        >
           View More →
         </button>
       </div>
