@@ -4,12 +4,12 @@ export default function Categories() {
   const navigate = useNavigate()
 
   const categories = [
-    { name: "Agriculture", icon: "🌾" },
-    { name: "Education", icon: "🎓" },
-    { name: "Finance", icon: "💰" },
-    { name: "Health", icon: "🏥" },
-    { name: "Women & Child", icon: "👩‍👧" },
-    { name: "Employment", icon: "💼" },
+    { name: "Agriculture", slug: "agriculture", icon: "🌾" },
+    { name: "Education", slug: "education", icon: "🎓" },
+    { name: "Finance", slug: "finance", icon: "💰" },
+    { name: "Health", slug: "health", icon: "🏥" },
+    { name: "Women & Child", slug: "women-child", icon: "👩‍👧" },
+    { name: "Employment", slug: "employment", icon: "💼" },
   ]
 
   return (
@@ -21,8 +21,10 @@ export default function Categories() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {categories.map(cat => (
           <div
-            key={cat.name}
-            onClick={() => navigate(`/search?category=${cat.name}`)}
+            key={cat.slug}
+            onClick={() =>
+              navigate(`/search?category=${cat.slug}`)
+            }
             className="
               cursor-pointer
               bg-white dark:bg-slate-900
