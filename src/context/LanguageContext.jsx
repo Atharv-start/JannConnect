@@ -42,6 +42,16 @@ const translations = {
 
     step3Title: "Select & Apply",
     step3Desc: "Apply to the most suitable scheme.",
+
+    /* CHATBOT */
+    chatbotInputPlaceholder: "Ask me anything...",
+    chatbotProcessing: "Processing...",
+    chatbotListingIntro: "Here are relevant schemes:",
+    chatbotNoMatches: "Sorry, I couldn't find matching schemes. Try different keywords.",
+    chatbotError: "Sorry, something went wrong. Please try again.",
+    chatbotSend: "Send",
+    chatbotListen: "Listen",
+    chatbotStop: "Stop",
   },
 
   hi: {
@@ -83,6 +93,16 @@ const translations = {
 
     step3Title: "चुनें और आवेदन करें",
     step3Desc: "उपयुक्त योजना के लिए आवेदन करें।",
+
+    /* CHATBOT */
+    chatbotInputPlaceholder: "मुझसे कुछ भी पूछें...",
+    chatbotProcessing: "प्रक्रियाधीन...",
+    chatbotListingIntro: "ये प्रासंगिक योजनाएं हैं:",
+    chatbotNoMatches: "माफ कीजिए, मुझे मेल खाने वाली योजनाएं नहीं मिलीं।",
+    chatbotError: "माफ कीजिए, कुछ गलत हुआ।",
+    chatbotSend: "भेजें",
+    chatbotListen: "सुनें",
+    chatbotStop: "रोकें",
   },
 }
 
