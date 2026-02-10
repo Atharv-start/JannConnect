@@ -13,93 +13,60 @@ export default function Footer() {
 
         {/* About */}
         <div>
-          <h3 className="text-white font-semibold mb-3">
-            JannConnect
-          </h3>
-          <p>
-            JannConnect is a National Platform that aims to offer one-stop
-            search and discovery of the Government schemes.
-          </p>
+          <h3 className="text-white font-semibold mb-3">JannConnect</h3>
+            <p>{t.aboutP1}</p>
         </div>
 
         {/* Important Links */}
         <div>
-          <h3 className="text-white font-semibold mb-3">
-            Important Links
-          </h3>
+          <h3 className="text-white font-semibold mb-3">{t.importantLinks}</h3>
           <ul className="space-y-2">
             <li>
-              <Link to="/about" className={linkStyle}>
-                About Us
-              </Link>
+              <Link to="/about" className={linkStyle}>{t.aboutUs}</Link>
             </li>
             <li>
-              <Link to="/privacy" className={linkStyle}>
-                Privacy Policy
-              </Link>
+              <Link to="/privacy" className={linkStyle}>{t.privacyPolicy}</Link>
             </li>
             <li>
-              <Link to="/disclaimer" className={linkStyle}>
-                Disclaimer
-              </Link>
+              <Link to="/disclaimer" className={linkStyle}>{t.disclaimer}</Link>
             </li>
           </ul>
         </div>
 
         {/* Government */}
         <div>
-          <h3 className="text-white font-semibold mb-3">
-            Government
-          </h3>
+          <h3 className="text-white font-semibold mb-3">{t.government}</h3>
           <ul className="space-y-2">
             <li>
-              <Link to="/ministries" className={linkStyle}>
-                Ministries
-              </Link>
+              <Link to="/ministries" className={linkStyle}>{t.ministries}</Link>
             </li>
             <li>
-              <Link to="/departments" className={linkStyle}>
-                Departments
-              </Link>
+              <Link to="/departments" className={linkStyle}>{t.departments}</Link>
             </li>
             <li>
-              <Link to="/states" className={linkStyle}>
-                States / UTs
-              </Link>
+              <Link to="/states" className={linkStyle}>{t.statesUTs}</Link>
             </li>
             <li>
-              <Link to="/government-schemes" className={linkStyle}>
-                Government Schemes
-              </Link>
+              <Link to="/government-schemes" className={linkStyle}>{t.governmentSchemes}</Link>
             </li>
           </ul>
         </div>
 
         {/* Support */}
         <div>
-          <h3 className="text-white font-semibold mb-3">
-            Support
-          </h3>
+          <h3 className="text-white font-semibold mb-3">{t.supportLabel}</h3>
           <ul className="space-y-2">
             <li>
-              <Link to="/help" className={linkStyle}>
-                Help
-              </Link>
+              <Link to="/help" className={linkStyle}>{t.help}</Link>
             </li>
             <li>
-              <Link to="/faqs" className={linkStyle}>
-                FAQs
-              </Link>
+              <Link to="/faqs" className={linkStyle}>{t.faqLabel}</Link>
             </li>
             <li>
-              <Link to="/feedback" className={linkStyle}>
-                Feedback
-              </Link>
+              <Link to="/feedback" className={linkStyle}>{t.feedback}</Link>
             </li>
             <li>
-              <Link to="/contact" className={linkStyle}>
-                Contact Us
-              </Link>
+              <Link to="/contact" className={linkStyle}>{t.contactUs}</Link>
             </li>
           </ul>
         </div>

@@ -33,7 +33,7 @@ export default function SchemeDetails() {
   // Text-to-Speech
   function speakText(text) {
     if (!("speechSynthesis" in window)) {
-      alert("Text-to-speech not supported in this browser.")
+      alert(t.ttsNotSupported)
       return
     }
 
@@ -48,6 +48,13 @@ export default function SchemeDetails() {
     const utterance = new SpeechSynthesisUtterance(text)
 
     if (lang === "hi") utterance.lang = "hi-IN"
+    else if (lang === "mr") utterance.lang = "mr-IN"
+    else if (lang === "ta") utterance.lang = "ta-IN"
+    else if (lang === "te") utterance.lang = "te-IN"
+    else if (lang === "bn") utterance.lang = "bn-IN"
+    else if (lang === "or") utterance.lang = "or-IN"
+    else if (lang === "ml") utterance.lang = "ml-IN"
+    else if (lang === "gu") utterance.lang = "gu-IN"
     else utterance.lang = "en-IN"
 
     utterance.rate = 1
@@ -59,8 +66,8 @@ export default function SchemeDetails() {
     window.speechSynthesis.speak(utterance)
   }
 
-  if (loading) return <p>Loading scheme…</p>
-  if (!scheme) return <p>Scheme not found</p>
+  if (loading) return <p>{t.loading}</p>
+  if (!scheme) return <p>{t.schemeNotFound}</p>
 
   // Tabs
   const tabs = [
@@ -75,41 +82,34 @@ export default function SchemeDetails() {
   let readAloudText = ""
 
   if (activeTab === "overview") {
-    readAloudText = scheme.simpleExplanation?.[lang] || scheme.simpleExplanation?.en || ""
+    readAloudText = scheme.simpleExplanation?.[lang] || ""
   }
 
   if (activeTab === "benefits") {
-    readAloudText = scheme.benefits?.[lang] || scheme.benefits?.en || ""
+    readAloudText = scheme.benefits || ""
   }
 
   if (activeTab === "eligibility") {
-    const eligData = scheme.eligibility?.[lang] || scheme.eligibility?.en || scheme.eligibility || {}
-    readAloudText = Object.entries(eligData)
-      .map(([k, v]) => `${k}: ${v}`)
-      .join(". ")
+    readAloudText = scheme.eligibility
+      ? Object.entries(scheme.eligibility)
+          .map(([k, v]) => `${k}: ${v}`)
+          .join(". ")
+      : ""
   }
 
   if (activeTab === "documents") {
-    const docsArray = Array.isArray(scheme.documentsRequired)
-      ? scheme.documentsRequired
-      : scheme.documentsRequired?.[lang] || scheme.documentsRequired?.en || []
-    readAloudText = docsArray?.join(". ") || ""
+    readAloudText = scheme.documentsRequired?.join(". ") || ""
   }
 
   if (activeTab === "steps") {
-    const stepsArray = Array.isArray(scheme.applicationProcess)
-      ? scheme.applicationProcess
-      : scheme.applicationProcess?.[lang] || scheme.applicationProcess?.en || []
-    readAloudText = stepsArray?.join(". ") || ""
+    readAloudText = scheme.applicationProcess?.join(". ") || ""
   }
 
   return (
     <section className="max-w-4xl mx-auto px-6 py-20">
       <h1 className="text-3xl font-bold">{scheme.name}</h1>
 
-      <p className="text-gray-500 mt-2">
-        {scheme.states?.join(", ") || "All India"}
-      </p>
+      <p className="text-gray-500 mt-2">{scheme.states?.join(", ") || t.allIndia}</p>
 
       {/* Tabs */}
       <div className="flex flex-wrap gap-3 mt-8">
@@ -132,85 +132,57 @@ export default function SchemeDetails() {
       <div className="mt-8 border rounded-xl p-6">
 
         {/* Read Aloud Button */}
-        <button
-          onClick={() => speakText(readAloudText)}
-          className="mb-4 px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700"
-        >
-          {isSpeaking ? "⏹ Stop Reading" : "🔊 Read Aloud"}
+        <button onClick={() => speakText(readAloudText)} className="mb-4 px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700">
+          {isSpeaking ? `⏹ ${t.stopReading}` : `🔊 ${t.readAloud}`}
         </button>
 
         {activeTab === "overview" && (
           <p>
-            {scheme.simpleExplanation?.[lang] ||
-              "No overview available."}
+            {scheme.simpleExplanation?.[lang] || t.noOverview}
           </p>
         )}
 
         {activeTab === "benefits" && (
-          <p>
-            {scheme.benefits?.[lang] || scheme.benefits?.en || t.noBenefits}
-          </p>
+          <p>{scheme.benefits}</p>
         )}
 
         {activeTab === "eligibility" && (
           <ul className="list-disc ml-6">
-            {(() => {
-              const eligData = scheme.eligibility?.[lang] || scheme.eligibility?.en || scheme.eligibility || {}
-              return Object.keys(eligData).length ? (
-                Object.entries(eligData).map(
-                  ([k, v], i) => (
-                    <li key={i}>
-                      <strong>{k}:</strong> {v}
-                    </li>
-                  )
+            {Object.keys(scheme.eligibility || {}).length ? (
+              Object.entries(scheme.eligibility).map(
+                ([k, v], i) => (
+                  <li key={i}>
+                    <strong>{k}:</strong> {v}
+                  </li>
                 )
-              ) : (
-                <li>{t.noEligibility}</li>
               )
-            })()}
+              ) : (
+              <li>{t.noEligibility}</li>
+            )}
           </ul>
         )}
 
         {activeTab === "documents" && (
           <ul className="list-disc ml-6">
-            {(() => {
-              const docsArray = Array.isArray(scheme.documentsRequired)
-                ? scheme.documentsRequired
-                : scheme.documentsRequired?.[lang] || scheme.documentsRequired?.en || []
-              return docsArray?.length
-                ? docsArray.map(
-                    (d, i) => <li key={i}>{d}</li>
-                  )
-                : (
-                <p>{t.noDocuments}</p>
-              )
-            })()}
+            {scheme.documentsRequired?.length
+              ? scheme.documentsRequired.map(
+                  (d, i) => <li key={i}>{d}</li>
+                )
+              : t.noDocuments}
           </ul>
         )}
 
         {activeTab === "steps" && (
           <ol className="list-decimal ml-6">
-            {(() => {
-              const stepsArray = Array.isArray(scheme.applicationProcess)
-                ? scheme.applicationProcess
-                : scheme.applicationProcess?.[lang] || scheme.applicationProcess?.en || []
-              return stepsArray?.length
-                ? stepsArray.map(
-                    (s, i) => <li key={i}>{s}</li>
-                  )
-                : (
-                <p>No application steps available.</p>
-              )
-            })()}
+            {scheme.applicationProcess?.map(
+              (s, i) => <li key={i}>{s}</li>
+            )}
           </ol>
         )}
       </div>
 
       {scheme.applyLink && (
-        <button
-          onClick={() => window.open(scheme.applyLink, "_blank")}
-          className="mt-10 px-6 py-3 bg-green-500 text-black rounded font-semibold"
-        >
+        <button onClick={() => window.open(scheme.applyLink, "_blank")} className="mt-10 px-6 py-3 bg-green-500 text-black rounded font-semibold">
           {t.applyNow}
         </button>
       )}

@@ -1,17 +1,23 @@
 import { useNavigate } from "react-router-dom"
 import { useLanguage } from "../context/LanguageContext"
+import Agriculture from "../assets/icons/Agriculture.svg"
+import Education from "../assets/icons/Education.svg"
+import Finance from "../assets/icons/Finance.svg"
+import Health from "../assets/icons/Health.svg"
+import WomenChild from "../assets/icons/WomenChild.svg"
+import Employment from "../assets/icons/Employment.svg"
 
 export default function Categories() {
-  const { t } = useLanguage()
   const navigate = useNavigate()
+  const { t } = useLanguage()
 
   const categories = [
-    { value: "Agriculture", key: "agriculture", icon: "🌾" },
-    { value: "Education", key: "education", icon: "🎓" },
-    { value: "Finance", key: "finance", icon: "💰" },
-    { value: "Health", key: "health", icon: "🏥" },
-    { value: "Women & Child", key: "womenChild", icon: "👩‍👧" },
-    { value: "Employment", key: "employment", icon: "💼" },
+    { id: "Agriculture", key: "agriculture", icon: Agriculture },
+    { id: "Education", key: "education", icon: Education },
+    { id: "Finance", key: "finance", icon: Finance },
+    { id: "Health", key: "health", icon: Health },
+    { id: "Women and Child", key: "womenChild", icon: WomenChild },
+    { id: "Employment", key: "employment", icon: Employment },
   ]
 
   return (
@@ -23,8 +29,10 @@ export default function Categories() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {categories.map(cat => (
           <div
-            key={cat.value}
-            onClick={() => navigate(`/search?category=${cat.value}`)}
+            key={cat.id}
+            onClick={() =>
+              navigate(`/search?category=${encodeURIComponent(cat.id)}`)
+            }
             className="
               cursor-pointer
               bg-white dark:bg-slate-900
@@ -38,7 +46,7 @@ export default function Categories() {
               hover:scale-105 transition
             "
           >
-            <span className="text-4xl">{cat.icon}</span>
+            <img src={cat.icon} alt={cat.id} className="w-10 h-10" />
             <p className="text-sm font-medium text-center">
               {t[cat.key]}
             </p>

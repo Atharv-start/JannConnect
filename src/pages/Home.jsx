@@ -23,18 +23,16 @@ export default function Home() {
         {/* Hero content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6">
           <p className="text-green-400 font-semibold mb-4 tracking-wide">
-            Government & NGO Scheme Portal
+            {t.tagline}
           </p>
 
           <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-            Schemes <br />
-            <span className="text-green-500">Made Easy</span>
+            {t.heroTitle1} <br />
+            <span className="text-green-500">{t.heroTitle2}</span>
           </h1>
 
           <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 dark:text-white/70">
-            Find government and NGO schemes you are eligible for —
-            all in one place, with simple explanations and direct
-            application links.
+            {t.heroDesc}
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -49,15 +47,15 @@ export default function Home() {
               onClick={() => navigate("/about")}
               className="px-8 py-4 border border-white/20 rounded-lg hover:bg-white/10 transition"
             >
-              Learn More
+              {t.learnMore}
             </button>
           </div>
 
           {/* Trust indicators */}
           <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-gray-500 dark:text-white/60">
-            <span>✔ 1000+ Schemes</span>
-            <span>✔ Central & State</span>
-            <span>✔ Government + NGO</span>
+            <span>{t.trust1}</span>
+            <span>{t.trust2}</span>
+            <span>{t.trust3}</span>
           </div>
         </div>
       </section>

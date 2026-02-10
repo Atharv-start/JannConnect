@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getAllSchemes } from "../services/schemesService"
+import { useLanguage } from "../context/LanguageContext"
 
 export default function NGOSchemes() {
   const navigate = useNavigate()
+  const { t } = useLanguage()
   const [schemes, setSchemes] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -26,9 +28,7 @@ export default function NGOSchemes() {
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
-      <h2 className="text-3xl font-bold mb-10">
-        NGO Schemes
-      </h2>
+      <h2 className="text-3xl font-bold mb-10">{t.ngoSchemesTitle}</h2>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {ngoSchemes.map(scheme => (
@@ -67,13 +67,8 @@ export default function NGOSchemes() {
               </p>
 
               <div className="mt-4 flex gap-3">
-                <button
-                  onClick={() =>
-                    navigate(`/scheme/${scheme.id}`)
-                  }
-                  className="px-3 py-1 border border-gray-300 dark:border-white/20 rounded"
-                >
-                  View Details
+                <button onClick={() => navigate(`/scheme/${scheme.id}`)} className="px-3 py-1 border border-gray-300 dark:border-white/20 rounded">
+                  {t.viewDetails || t.view}
                 </button>
 
                 {scheme.applyLink && (
@@ -86,7 +81,7 @@ export default function NGOSchemes() {
                     }
                     className="px-3 py-1 bg-green-500 text-black rounded"
                   >
-                    Apply
+                    {t.apply}
                   </button>
                 )}
               </div>

@@ -114,13 +114,13 @@ const SpeechRecognition =
   window.SpeechRecognition ||
   window.webkitSpeechRecognition
 
-if (!SpeechRecognition) return null
+  if (!SpeechRecognition) return null
 
 const r = new SpeechRecognition()
 r.continuous = true
 r.interimResults = false
 r.maxAlternatives = 1
-r.lang = "en-IN"
+  r.lang = lang === "hi" ? "hi-IN" : "en-IN"
 
 r.onresult = (e) => {
   const results = []
@@ -189,19 +189,13 @@ if (eligibilityMode) {
   if (eligibilityStep === "age") {
     const age = parseInt(text)
     if (isNaN(age)) {
-      appendMessage({
-        sender: "bot",
-        text: "Please enter a valid age.",
-      })
+      appendMessage({ sender: "bot", text: t.chatbotInvalidAge })
       return
     }
 
     setEligibilityData((d) => ({ ...d, age }))
     setEligibilityStep("gender")
-    appendMessage({
-      sender: "bot",
-      text: "What is your gender? (Male/Female)",
-    })
+    appendMessage({ sender: "bot", text: t.chatbotAskGender })
     return
   }
 
@@ -215,15 +209,9 @@ if (eligibilityMode) {
     const results = filterByEligibility(data)
 
     if (results.length === 0) {
-      appendMessage({
-        sender: "bot",
-        text: "No schemes found for your profile.",
-      })
+      appendMessage({ sender: "bot", text: t.chatbotNoSchemes })
     } else {
-      appendMessage({
-        sender: "bot",
-        text: "Here are schemes you may be eligible for:",
-      })
+      appendMessage({ sender: "bot", text: t.chatbotSchemesIntro })
       showSchemeCards(results)
     }
     return
@@ -252,10 +240,7 @@ if (category) {
   return
 }
 
-appendMessage({
-  sender: "bot",
-  text: "Tell me what type of schemes you are looking for.",
-})
+  appendMessage({ sender: "bot", text: t.chatbotPrompt })
 
 
 }

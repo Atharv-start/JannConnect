@@ -182,7 +182,7 @@ export default function Navbar() {
                   src={theme === "dark" ? SunIcon : MoonIcon}
                   className="w-4"
                 />
-                Toggle Theme
+                {t.toggleTheme}
               </button>
 
               <button
@@ -190,7 +190,7 @@ export default function Navbar() {
                 className="flex items-center gap-2"
               >
                 <img src={LanguageIcon} className="w-4" />
-                Language: {lang.toUpperCase()}
+                {t.languageLabel} {lang.toUpperCase()}
               </button>
 
               {user ? (
