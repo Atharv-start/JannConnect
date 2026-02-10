@@ -1,4 +1,6 @@
  import React, { useEffect, useRef, useState } from "react"
+ import axios from "axios"
+
 import { useLanguage } from "../context/LanguageContext"
 import { getAllSchemes } from "../services/schemesService"
 import { useNavigate } from "react-router-dom"
@@ -57,10 +59,45 @@ micEnabled ? "true" : "false"
 )
 } catch {}
 }, [micEnabled])
+async function speak(text) {
+  if (!text || !DEEPGRAM_KEY) return
+
+  try {
+    const response = await axios.post(
+      "https://api.deepgram.com/v1/speak?model=aura-asteria-en",
+      { text },
+      {
+        headers: {
+          Authorization: `Token ${DEEPGRAM_KEY}`,
+          "Content-Type": "application/json",
+        },
+        responseType: "arraybuffer",
+      }
+    )
+
+    const audioBlob = new Blob([response.data], {
+      type: "audio/wav",
+    })
+
+    const audioUrl = URL.createObjectURL(audioBlob)
+    const audio = new Audio(audioUrl)
+    audio.play()
+  } catch (error) {
+    console.error("Deepgram TTS error:", error)
+  }
+}
+
+
 
 function appendMessage(msg) {
-setMessages((m) => [...m, msg])
+  setMessages((m) => [...m, msg])
+
+  // Speak only bot messages with text
+  if (msg.sender === "bot" && msg.text) {
+    speak(msg.text)
+  }
 }
+
 
 function showSchemeCards(results) {
 appendMessage({

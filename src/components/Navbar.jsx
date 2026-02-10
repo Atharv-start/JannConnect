@@ -21,53 +21,83 @@ export default function Navbar() {
 
   const [query, setQuery] = useState("")
   const [langOpen, setLangOpen] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [isListening, setIsListening] = useState(false)
 
   function handleSearch(e) {
     e.preventDefault()
     if (query.trim()) {
       navigate(`/search?q=${query}`)
       setQuery("")
-      setMenuOpen(false)
+    }
+  }
+
+  // Voice search function
+  function startVoiceSearch() {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition
+
+    if (!SpeechRecognition) {
+      alert("Voice search not supported in this browser")
+      return
+    }
+
+    const recognition = new SpeechRecognition()
+    recognition.lang = "en-US"
+    recognition.start()
+    setIsListening(true)
+
+    recognition.onresult = (event) => {
+      const text = event.results[0][0].transcript
+      setQuery(text)
+      setIsListening(false)
+
+      navigate(`/search?q=${text}`)
+    }
+
+    recognition.onerror = () => {
+      setIsListening(false)
     }
   }
 
   return (
     <>
-      <header className="fixed top-2 left-0 w-full z-50 px-3 md:px-6">
+      <header className="fixed top-4 left-0 w-full z-50 px-6">
         <div
           className={`
             mx-auto max-w-7xl
-            flex items-center justify-between
-            px-4 md:px-6 py-2 md:py-3
-            rounded-full
+            flex items-center gap-4
+            px-6 py-3 rounded-full
             backdrop-blur-xl
             shadow-lg
             transition-all duration-500
+
             ${
               theme === "dark"
                 ? "bg-white/10 border border-white/20 text-white"
-                : "bg-white/80 border border-black/10 text-gray-900"
+                : "bg-white/70 border border-black/10 text-gray-900"
             }
           `}
         >
           {/* Logo */}
           <div
             onClick={() => navigate("/")}
-            className="font-bold text-base md:text-lg cursor-pointer whitespace-nowrap"
+            className={`font-bold text-lg cursor-pointer whitespace-nowrap ${
+              theme === "dark" ? "text-white" : "text-gray-900"
+            }`}
           >
             <span className="text-green-400">Jann</span>Connect
           </div>
 
-          {/* Desktop Search */}
+          {/* Search */}
           <form
             onSubmit={handleSearch}
-            className="flex-1 hidden md:flex items-center gap-2 mx-6"
+            className="flex-1 hidden md:flex items-center gap-2"
           >
             <img src={SearchIcon} className="w-4 opacity-70" />
+
             <input
               value={query}
-              onChange={e => setQuery(e.target.value)}
+              onChange={(e) => setQuery(e.target.value)}
               placeholder={t.searchPlaceholder}
               className={`
                 w-full bg-transparent outline-none
@@ -78,10 +108,26 @@ export default function Navbar() {
                 }
               `}
             />
+
+            {/* Voice button */}
+            <button
+              type="button"
+              onClick={startVoiceSearch}
+              className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                isListening
+                  ? "bg-red-500 text-white"
+                  : theme === "dark"
+                  ? "bg-white/10 border border-white/20"
+                  : "bg-white/80 border border-black/10"
+              }`}
+              title="Voice search"
+            >
+              🎤
+            </button>
           </form>
 
-          {/* Right (desktop) */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Right */}
+          <div className="flex items-center gap-3 transition-all duration-500">
             {/* Theme */}
             <button
               onClick={toggleTheme}
@@ -100,10 +146,10 @@ export default function Navbar() {
             {/* Language */}
             <button
               onClick={() => setLangOpen(true)}
-              className={`px-3 py-1 rounded-full text-sm flex items-center gap-2 ${
+              className={`px-3 py-1 rounded-full text-sm flex items-center gap-2 whitespace-nowrap transition-all ${
                 theme === "dark"
-                  ? "bg-white/10 border border-white/20"
-                  : "bg-white/80 border border-black/10"
+                  ? "bg-white/10 border border-white/20 text-white"
+                  : "bg-white/80 border border-black/10 text-gray-800"
               }`}
             >
               <img src={LanguageIcon} className="w-4" />
@@ -112,10 +158,14 @@ export default function Navbar() {
 
             {/* Auth */}
             {user ? (
-              <div className="flex items-center gap-2 text-sm">
-                <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2 animate-fade-in">
+                <div
+                  className={`flex items-center gap-1 text-sm whitespace-nowrap ${
+                    theme === "dark" ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   <img src={UserIcon} className="w-4" />
-                  {user.name}
+                  {t.greeting}, {user.name}
                 </div>
 
                 <button
@@ -136,83 +186,7 @@ export default function Navbar() {
               </button>
             )}
           </div>
-
-          {/* Hamburger (mobile) */}
-          <button
-            className="md:hidden text-xl"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? "✕" : "☰"}
-          </button>
         </div>
-
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div
-            className={`
-              mt-2 mx-auto max-w-7xl rounded-xl p-4
-              backdrop-blur-xl shadow-lg
-              ${
-                theme === "dark"
-                  ? "bg-slate-900 border border-white/10 text-white"
-                  : "bg-white border border-gray-200 text-gray-900"
-              }
-            `}
-          >
-            {/* Mobile search */}
-            <form
-              onSubmit={handleSearch}
-              className="flex items-center gap-2 mb-4"
-            >
-              <img src={SearchIcon} className="w-4 opacity-70" />
-              <input
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                placeholder={t.searchPlaceholder}
-                className="w-full bg-transparent outline-none"
-              />
-            </form>
-
-            <div className="flex flex-col gap-3">
-              <button
-                onClick={toggleTheme}
-                className="flex items-center gap-2"
-              >
-                <img
-                  src={theme === "dark" ? SunIcon : MoonIcon}
-                  className="w-4"
-                />
-                Toggle Theme
-              </button>
-
-              <button
-                onClick={() => setLangOpen(true)}
-                className="flex items-center gap-2"
-              >
-                <img src={LanguageIcon} className="w-4" />
-                Language: {lang.toUpperCase()}
-              </button>
-
-              {user ? (
-                <button
-                  onClick={logout}
-                  className="flex items-center gap-2 text-red-400"
-                >
-                  <img src={SignOutIcon} className="w-4" />
-                  {t.logout}
-                </button>
-              ) : (
-                <button
-                  onClick={() => navigate("/signin")}
-                  className="flex items-center gap-2 text-green-500"
-                >
-                  <img src={SignInIcon} className="w-4" />
-                  {t.signIn}
-                </button>
-              )}
-            </div>
-          </div>
-        )}
       </header>
 
       {langOpen && <LanguagePopup onClose={() => setLangOpen(false)} />}

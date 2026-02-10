@@ -7,6 +7,7 @@ import About from "./pages/About"
 import Privacy from "./pages/Privacy"
 import Disclaimer from "./pages/Disclaimer"
 import SignIn from "./pages/SignIn"
+import VoiceFeatures from "./components/VoiceFeatures"
 
 import Help from "./pages/Help"
 import FAQs from "./pages/FAQs"
@@ -40,6 +41,9 @@ export default function App() {
         <Route path="/departments" element={<Layout><Departments /></Layout>} />
         <Route path="/states" element={<Layout><States /></Layout>} />
         <Route path="/government-schemes" element={<Layout><GovernmentSchemes /></Layout>} />
+
+        {/* Voice Features */}
+        <Route path="/voice" element={<Layout><VoiceFeatures /></Layout>} />
       </Routes>
     </BrowserRouter>
   )

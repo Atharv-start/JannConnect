@@ -13,16 +13,6 @@ export default function FilterSidebar() {
     setParams(newParams)
   }
 
-  const STATES = [
-    "All",
-    "Delhi",
-    "Sikkim",
-    "Puducherry",
-    "Jammu and Kashmir",
-    "Gujarat",
-    "Meghalaya",
-  ]
-
   return (
     <aside className="w-full md:w-64 bg-slate-900 border border-white/10 rounded-lg p-6">
       <h2 className="text-lg font-semibold mb-4">
@@ -68,15 +58,15 @@ export default function FilterSidebar() {
           className="w-full px-3 py-2 rounded bg-slate-800 text-white"
         >
           <option value="">Any</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
         </select>
       </div>
 
-      {/* State */}
+      {/* State / Coverage */}
       <div>
         <label className="block text-sm mb-1">
-          State
+          State / Coverage
         </label>
         <select
           value={params.get("state") || ""}
@@ -84,13 +74,13 @@ export default function FilterSidebar() {
           className="w-full px-3 py-2 rounded bg-slate-800 text-white"
         >
           <option value="">All</option>
-          {STATES.map(state => (
-            <option key={state} value={state}>
-              {state === "All"
-                ? "All India (Central Schemes)"
-                : state}
-            </option>
-          ))}
+          <option value="All India">All India (Central Schemes)</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Sikkim">Sikkim</option>
+          <option value="Puducherry">Puducherry</option>
+          <option value="Jammu and Kashmir">Jammu & Kashmir</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Meghalaya">Meghalaya</option>
         </select>
       </div>
     </aside>
