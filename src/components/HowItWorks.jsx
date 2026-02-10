@@ -1,66 +1,78 @@
-import { useLanguage } from "../context/LanguageContext"
-import EnterDetails from "../assets/icons/EnterDetails.svg"
-import SearchIcon from "../assets/icons/Search.svg"
-import SelectApply from "../assets/icons/SelectApply.svg"
+import { useState, useEffect } from "react"
 
+// 👉 Add your images (8 total)
+import img1 from "../assets/carousel/banner_1.jpg"
+import img2 from "../assets/carousel/banner_2.jpg"
+import img3 from "../assets/carousel/banner_3.jpg"
+import img4 from "../assets/carousel/banner_4.jpg"
+import img5 from "../assets/carousel/banner_5.jpg"
+import img6 from "../assets/carousel/banner_6.jpg"
+import img7 from "../assets/carousel/banner_7.jpg"
+import img8 from "../assets/carousel/banner_8.jpg"
 
+const images = [
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+]
 
 export default function HowItWorks() {
-  const { t } = useLanguage()
+  const [index, setIndex] = useState(0)
 
-  const steps = [
-    {
-      title: t.step1Title,
-      desc: t.step1Desc,
-      icon: EnterDetails,
-    },
-    {
-      title: t.step2Title,
-      desc: t.step2Desc,
-      icon: SearchIcon,
-    },
-    {
-      title: t.step3Title,
-      desc: t.step3Desc,
-      icon: SelectApply,
-    },
-  ]
+  // 🔁 Auto slide (unchanged)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length)
+    }, 1500) // 3 seconds
+
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <section className="mt-28">
+    <section className="mt-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <p className="text-gray-500 dark:text-white/60 text-sm uppercase tracking-wide">
-          {t.howTitle}
-        </p>
 
-        <h2 className="mt-2 text-3xl md:text-4xl font-bold">
-          {t.howSubtitle}
+        {/* Heading */}
+        <h2 className="text-3xl md:text-4xl font-bold mb-10">
+          Schemes That Change Lives
         </h2>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="
-                bg-white dark:bg-slate-900
-                text-gray-800 dark:text-white
-                border border-gray-200 dark:border-white/10
-                rounded-xl p-8
-                hover:border-green-500 transition-all duration-300
-              "
-            >
-              <img src={step.icon} className="w-12 h-12 mx-auto mb-4" />
-
-              <h3 className="text-lg font-semibold">
-                {step.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-gray-500 dark:text-white/60">
-                {step.desc}
-              </p>
-            </div>
-          ))}
+        {/* Carousel container */}
+        <div className="relative w-full overflow-hidden">
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{
+              transform: `translateX(-${index * 33.333}%)`,
+            }}
+          >
+            {images.map((img, i) => (
+              <div
+                key={i}
+                className="w-1/3 px-4 flex-shrink-0"
+              >
+                <img
+                  src={img}
+                  alt={`banner-${i}`}
+                  className={`
+                    w-full h-[300px] object-cover rounded-xl
+                    transition-all duration-700
+                    ${
+                      i === index + 1
+                        ? "scale-100 opacity-100"
+                        : "scale-90 opacity-60"
+                    }
+                  `}
+                />
+              </div>
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   )
