@@ -5,7 +5,7 @@ import { getSchemeById } from "../services/schemesService"
 
 export default function SchemeDetails() {
   const { id } = useParams()
-  const { lang } = useLanguage()
+  const { lang, t } = useLanguage()
 
   const [scheme, setScheme] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -64,38 +64,43 @@ export default function SchemeDetails() {
 
   // Tabs
   const tabs = [
-    { key: "overview", label: "Overview" },
-    { key: "benefits", label: "Benefits" },
-    { key: "eligibility", label: "Eligibility" },
-    { key: "documents", label: "Documents" },
-    { key: "steps", label: "How to Apply" },
+    { key: "overview", label: t.overview },
+    { key: "benefits", label: t.benefits },
+    { key: "eligibility", label: t.eligibility },
+    { key: "documents", label: t.documents },
+    { key: "steps", label: t.howToApply },
   ]
 
   // Read-aloud content
   let readAloudText = ""
 
   if (activeTab === "overview") {
-    readAloudText = scheme.simpleExplanation?.[lang] || ""
+    readAloudText = scheme.simpleExplanation?.[lang] || scheme.simpleExplanation?.en || ""
   }
 
   if (activeTab === "benefits") {
-    readAloudText = scheme.benefits || ""
+    readAloudText = scheme.benefits?.[lang] || scheme.benefits?.en || ""
   }
 
   if (activeTab === "eligibility") {
-    readAloudText = scheme.eligibility
-      ? Object.entries(scheme.eligibility)
-          .map(([k, v]) => `${k}: ${v}`)
-          .join(". ")
-      : ""
+    const eligData = scheme.eligibility?.[lang] || scheme.eligibility?.en || scheme.eligibility || {}
+    readAloudText = Object.entries(eligData)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(". ")
   }
 
   if (activeTab === "documents") {
-    readAloudText = scheme.documentsRequired?.join(". ") || ""
+    const docsArray = Array.isArray(scheme.documentsRequired)
+      ? scheme.documentsRequired
+      : scheme.documentsRequired?.[lang] || scheme.documentsRequired?.en || []
+    readAloudText = docsArray?.join(". ") || ""
   }
 
   if (activeTab === "steps") {
-    readAloudText = scheme.applicationProcess?.join(". ") || ""
+    const stepsArray = Array.isArray(scheme.applicationProcess)
+      ? scheme.applicationProcess
+      : scheme.applicationProcess?.[lang] || scheme.applicationProcess?.en || []
+    readAloudText = stepsArray?.join(". ") || ""
   }
 
   return (
@@ -142,40 +147,61 @@ export default function SchemeDetails() {
         )}
 
         {activeTab === "benefits" && (
-          <p>{scheme.benefits}</p>
+          <p>
+            {scheme.benefits?.[lang] || scheme.benefits?.en || t.noBenefits}
+          </p>
         )}
 
         {activeTab === "eligibility" && (
           <ul className="list-disc ml-6">
-            {Object.keys(scheme.eligibility || {}).length ? (
-              Object.entries(scheme.eligibility).map(
-                ([k, v], i) => (
-                  <li key={i}>
-                    <strong>{k}:</strong> {v}
-                  </li>
+            {(() => {
+              const eligData = scheme.eligibility?.[lang] || scheme.eligibility?.en || scheme.eligibility || {}
+              return Object.keys(eligData).length ? (
+                Object.entries(eligData).map(
+                  ([k, v], i) => (
+                    <li key={i}>
+                      <strong>{k}:</strong> {v}
+                    </li>
+                  )
                 )
+              ) : (
+                <li>{t.noEligibility}</li>
               )
-            ) : (
-              <li>No eligibility conditions</li>
-            )}
+            })()}
           </ul>
         )}
 
         {activeTab === "documents" && (
           <ul className="list-disc ml-6">
-            {scheme.documentsRequired?.length
-              ? scheme.documentsRequired.map(
-                  (d, i) => <li key={i}>{d}</li>
-                )
-              : "No documents required"}
+            {(() => {
+              const docsArray = Array.isArray(scheme.documentsRequired)
+                ? scheme.documentsRequired
+                : scheme.documentsRequired?.[lang] || scheme.documentsRequired?.en || []
+              return docsArray?.length
+                ? docsArray.map(
+                    (d, i) => <li key={i}>{d}</li>
+                  )
+                : (
+                <p>{t.noDocuments}</p>
+              )
+            })()}
           </ul>
         )}
 
         {activeTab === "steps" && (
           <ol className="list-decimal ml-6">
-            {scheme.applicationProcess?.map(
-              (s, i) => <li key={i}>{s}</li>
-            )}
+            {(() => {
+              const stepsArray = Array.isArray(scheme.applicationProcess)
+                ? scheme.applicationProcess
+                : scheme.applicationProcess?.[lang] || scheme.applicationProcess?.en || []
+              return stepsArray?.length
+                ? stepsArray.map(
+                    (s, i) => <li key={i}>{s}</li>
+                  )
+                : (
+                <p>No application steps available.</p>
+              )
+            })()}
           </ol>
         )}
       </div>
@@ -185,7 +211,7 @@ export default function SchemeDetails() {
           onClick={() => window.open(scheme.applyLink, "_blank")}
           className="mt-10 px-6 py-3 bg-green-500 text-black rounded font-semibold"
         >
-          Apply on Official Website
+          {t.applyNow}
         </button>
       )}
     </section>
