@@ -19,7 +19,7 @@ export default function Layout({ children }) {
     >
       <Navbar />
 
-      <main className="pt-28">
+      <main className="pt-36">
         {children}
       </main>
 

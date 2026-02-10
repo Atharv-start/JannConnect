@@ -1,10 +1,17 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import LanguagePopup from "./LanguagePopup"
-import AccessibilityPanel from "./AccessibilityPanel"
 import { useLanguage } from "../context/LanguageContext"
 import { useAuth } from "../context/AuthContext"
 import { useTheme } from "../context/ThemeContext"
+import LanguagePopup from "./LanguagePopup"
+
+import SearchIcon from "../assets/icons/Search.svg"
+import MoonIcon from "../assets/icons/moon.svg"
+import SunIcon from "../assets/icons/sun.svg"
+import LanguageIcon from "../assets/icons/Language.svg"
+import UserIcon from "../assets/icons/user.svg"
+import SignInIcon from "../assets/icons/sign-in.svg"
+import SignOutIcon from "../assets/icons/sign-out.svg"
 
 export default function Navbar() {
   const { t, lang } = useLanguage()
@@ -14,7 +21,6 @@ export default function Navbar() {
 
   const [query, setQuery] = useState("")
   const [langOpen, setLangOpen] = useState(false)
-  const [accessOpen, setAccessOpen] = useState(false)
 
   function handleSearch(e) {
     e.preventDefault()
@@ -26,79 +32,113 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className="
-          fixed top-0 left-0 w-full z-50
-          bg-white dark:bg-slate-900
-          border-b border-gray-200 dark:border-white/10
-          backdrop-blur
-        "
-      >
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
+      <header className="fixed top-4 left-0 w-full z-50 px-6">
+        <div
+          className={`
+            mx-auto max-w-7xl
+            flex items-center gap-4
+            px-6 py-3 rounded-full
+            backdrop-blur-xl
+            shadow-lg
+            transition-all duration-500
 
+            ${
+              theme === "dark"
+                ? "bg-white/10 border border-white/20 text-white"
+                : "bg-white/70 border border-black/10 text-gray-900"
+            }
+          `}
+        >
           {/* Logo */}
           <div
-            className="
-              font-bold text-xl cursor-pointer
-              text-gray-900 dark:text-white
-            "
             onClick={() => navigate("/")}
+            className={`font-bold text-lg cursor-pointer whitespace-nowrap ${
+              theme === "dark" ? "text-white" : "text-gray-900"
+            }`}
           >
-            <span className="text-green-500">Jann</span>Connect
+            <span className="text-green-400">Jann</span>Connect
           </div>
 
           {/* Search */}
-          <form onSubmit={handleSearch} className="hidden md:block flex-1">
+          <form
+            onSubmit={handleSearch}
+            className="flex-1 hidden md:flex items-center gap-2"
+          >
+            <img src={SearchIcon} className="w-4 opacity-70" />
+
             <input
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder={t.searchPlaceholder}
-              className="
-                w-full px-4 py-2 rounded
-                bg-gray-100 dark:bg-slate-800
-                text-gray-900 dark:text-white
-                placeholder-gray-500
-                focus:ring-2 focus:ring-green-500
-              "
+              className={`
+                w-full bg-transparent outline-none
+                ${
+                  theme === "dark"
+                    ? "text-white placeholder-white/60"
+                    : "text-gray-800 placeholder-gray-500"
+                }
+              `}
             />
           </form>
 
-          {/* Right Controls */}
-          <div className="flex items-center gap-3 text-gray-900 dark:text-white">
+          {/* Right */}
+          <div className="flex items-center gap-3 transition-all duration-500">
+
             {/* Theme */}
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 border border-gray-300 dark:border-white/20 rounded"
+              className={`w-9 h-9 rounded-full flex items-center justify-center ${
+                theme === "dark"
+                  ? "bg-white/10 border border-white/20"
+                  : "bg-white/80 border border-black/10"
+              }`}
             >
-              {theme === "dark" ? "🌙" : "☀️"}
+              <img
+                src={theme === "dark" ? SunIcon : MoonIcon}
+                className="w-4"
+              />
             </button>
 
             {/* Language */}
             <button
               onClick={() => setLangOpen(true)}
-              className="px-3 py-2 border border-gray-300 dark:border-white/20 rounded text-sm"
+              className={`px-3 py-1 rounded-full text-sm flex items-center gap-2 whitespace-nowrap transition-all ${
+                theme === "dark"
+                  ? "bg-white/10 border border-white/20 text-white"
+                  : "bg-white/80 border border-black/10 text-gray-800"
+              }`}
             >
-              🌐 {lang.toUpperCase()}
+              <img src={LanguageIcon} className="w-4" />
+              {lang.toUpperCase()}
             </button>
 
             {/* Auth */}
             {user ? (
-              <>
-                <span className="text-sm font-medium">
-                  Hi, {user.name}
-                </span>
+              <div className="flex items-center gap-2 animate-fade-in">
+
+                <div
+                  className={`flex items-center gap-1 text-sm whitespace-nowrap ${
+                    theme === "dark" ? "text-white" : "text-gray-800"
+                  }`}
+                >
+                  <img src={UserIcon} className="w-4" />
+                  {t.greeting}, {user.name}
+                </div>
+
                 <button
                   onClick={logout}
-                  className="px-3 py-2 border border-gray-300 dark:border-white/20 rounded text-sm"
+                  className="px-3 py-1 rounded-full bg-green-500 text-black text-sm flex items-center gap-1"
                 >
-                  Logout
+                  <img src={SignOutIcon} className="w-4" />
+                  {t.logout}
                 </button>
-              </>
+              </div>
             ) : (
               <button
                 onClick={() => navigate("/signin")}
-                className="px-4 py-2 bg-green-500 text-black rounded font-semibold"
+                className="px-4 py-1 rounded-full bg-green-500 text-black text-sm flex items-center gap-2"
               >
+                <img src={SignInIcon} className="w-4" />
                 {t.signIn}
               </button>
             )}
@@ -107,7 +147,6 @@ export default function Navbar() {
       </header>
 
       {langOpen && <LanguagePopup onClose={() => setLangOpen(false)} />}
-      {accessOpen && <AccessibilityPanel onClose={() => setAccessOpen(false)} />}
     </>
   )
 }
