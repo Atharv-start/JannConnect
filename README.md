@@ -177,7 +177,7 @@ npm run build
 Deployed using **Netlify**.
 
 Live URL:
-`[JannConnect](https://jannconnect.netlify.app)`
+[JannConnect](https://jannconnect.netlify.app)
 
 ---
 
