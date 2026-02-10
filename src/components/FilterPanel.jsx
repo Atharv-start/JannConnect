@@ -42,6 +42,7 @@ export default function FilterPanel({ onClose }) {
         </div>
 
         <form onSubmit={applyFilters} className="space-y-4">
+          {/* Age */}
           <input
             name="age"
             placeholder="Age"
@@ -49,6 +50,7 @@ export default function FilterPanel({ onClose }) {
             className="w-full px-3 py-2 rounded bg-slate-800"
           />
 
+          {/* Income */}
           <input
             name="income"
             placeholder="Annual Income (₹)"
@@ -56,6 +58,7 @@ export default function FilterPanel({ onClose }) {
             className="w-full px-3 py-2 rounded bg-slate-800"
           />
 
+          {/* Gender */}
           <select
             name="gender"
             defaultValue={params.get("gender") || ""}
@@ -66,21 +69,28 @@ export default function FilterPanel({ onClose }) {
             <option>Female</option>
           </select>
 
+          {/* State */}
           <select
             name="state"
             defaultValue={params.get("state") || ""}
             className="w-full px-3 py-2 rounded bg-slate-800"
           >
-            <option value="">All States</option>
-            <option>Tamil Nadu</option>
-            <option>Maharashtra</option>
-            <option>Karnataka</option>
+            <option value="">All India (Central Schemes)</option>
+            <option value="All">All</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Meghalaya">Meghalaya</option>
           </select>
 
+          {/* Apply */}
           <button className="w-full bg-green-500 text-black py-2 rounded font-semibold">
             Apply Filters
           </button>
 
+          {/* Clear */}
           <button
             type="button"
             onClick={clearFilters}

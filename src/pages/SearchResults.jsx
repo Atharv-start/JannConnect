@@ -17,6 +17,7 @@ export default function SearchResults() {
   const [activeTab, setActiveTab] = useState("all")
 
   const [searchParams] = useSearchParams()
+  const queryParam = searchParams.get("q")
   const categoryParam = searchParams.get("category")
   const ageParam = searchParams.get("age")
   const incomeParam = searchParams.get("income")
@@ -45,11 +46,36 @@ export default function SearchResults() {
             s.type.toLowerCase() === activeTab
         )
     ).filter(s => {
+      // TEXT SEARCH FILTER
+      if (queryParam) {
+        const q = queryParam.toLowerCase()
+
+        const nameMatch = s.name?.toLowerCase().includes(q)
+
+        const categoryMatch = (s.category || []).some(c =>
+          c.toLowerCase().includes(q)
+        )
+
+        const descMatch =
+          s.simpleExplanation?.en
+            ?.toLowerCase()
+            .includes(q) ||
+          s.simpleExplanation?.[lang]
+            ?.toLowerCase()
+            .includes(q)
+
+        if (!nameMatch && !categoryMatch && !descMatch) {
+          return false
+        }
+      }
+
       // CATEGORY FILTER
       if (categoryParam) {
         if (
           !(s.category || []).some(c =>
-            c.toLowerCase().includes(categoryParam.toLowerCase())
+            c.toLowerCase().includes(
+              categoryParam.toLowerCase()
+            )
           )
         ) {
           return false
@@ -58,9 +84,13 @@ export default function SearchResults() {
 
       // STATE FILTER
       if (stateParam && stateParam !== "All") {
+        const states = (s.states || []).map(st =>
+          st.toLowerCase()
+        )
+
         if (
-          !(s.states || []).includes("All") &&
-          !(s.states || []).includes(stateParam)
+          !states.includes("all") &&
+          !states.includes(stateParam.toLowerCase())
         ) {
           return false
         }
