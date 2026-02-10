@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react"
-import {
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { useLanguage } from "../context/LanguageContext"
+import { useAccessibility } from "../context/AccessibilityContext"
 import FilterPanel from "../components/FilterPanel"
 import { getAllSchemes } from "../services/schemesService"
 
 export default function SearchResults() {
   const navigate = useNavigate()
   const { t, lang } = useLanguage()
+  const { setIsOverlayOpen } = useAccessibility()
 
   const [schemes, setSchemes] = useState([])
   const [loading, setLoading] = useState(true)
@@ -26,7 +25,6 @@ export default function SearchResults() {
       setSchemes(data)
       setLoading(false)
     }
-
     fetchSchemes()
   }, [])
 
@@ -52,19 +50,24 @@ export default function SearchResults() {
 
   return (
     <section className="max-w-7xl mx-auto px-6 pb-24">
+      {/* Header */}
       <div className="flex items-center justify-between mb-10">
         <h1 className="text-4xl font-bold">
           {t.searchResults}
         </h1>
 
         <button
-          onClick={() => setFilterOpen(true)}
+          onClick={() => {
+            setFilterOpen(true)
+            setIsOverlayOpen(true)
+          }}
           className="px-4 py-2 border border-gray-300 dark:border-white/20 rounded"
         >
           {t.filters}
         </button>
       </div>
 
+      {/* Tabs */}
       <div className="flex gap-4 mb-8">
         {["all", "government", "ngo"].map(tab => (
           <button
@@ -81,12 +84,21 @@ export default function SearchResults() {
         ))}
       </div>
 
+      {/* Results */}
       <div className="grid gap-8">
         {filteredSchemes.map(scheme => (
           <article
             key={scheme.id}
             className="bg-white dark:bg-slate-900 border rounded-xl p-6"
           >
+            {scheme.imageUrl && (
+              <img
+                src={scheme.imageUrl}
+                alt={scheme.name}
+                className="w-full h-48 object-cover rounded mb-4"
+              />
+            )}
+
             <h2 className="text-2xl font-semibold">
               {scheme.name}
             </h2>
@@ -128,9 +140,13 @@ export default function SearchResults() {
         ))}
       </div>
 
+      {/* Filter Panel */}
       {filterOpen && (
         <FilterPanel
-          onClose={() => setFilterOpen(false)}
+          onClose={() => {
+            setFilterOpen(false)
+            setIsOverlayOpen(false)
+          }}
         />
       )}
     </section>

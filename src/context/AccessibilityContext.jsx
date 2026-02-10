@@ -1,8 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react"
 
+
+
 const AccessibilityContext = createContext()
 
 export function AccessibilityProvider({ children }) {
+  
   const [fontScale, setFontScale] = useState(
     Number(localStorage.getItem("fontScale")) || 1
   )
@@ -18,6 +21,7 @@ export function AccessibilityProvider({ children }) {
   const [reduceMotion, setReduceMotion] = useState(
     localStorage.getItem("reduceMotion") === "true"
   )
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false)
 
   useEffect(() => {
     document.documentElement.style.fontSize = `${fontScale * 100}%`
@@ -62,6 +66,8 @@ export function AccessibilityProvider({ children }) {
         reduceMotion,
         setReduceMotion,
         resetAll,
+        isOverlayOpen,
+        setIsOverlayOpen,
       }}
     >
       {children}
