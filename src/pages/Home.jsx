@@ -3,33 +3,84 @@ import Stats from "../components/Stats"
 import HowItWorks from "../components/HowItWorks"
 import Categories from "../components/Categories"
 import { useLanguage } from "../context/LanguageContext"
-import NGOSchemes from "../components/NGOSchemes"
+import AboutSection from "../components/AboutSection"
+import FAQSection from "../components/FAQSection"
+import AnimatedSection from "../components/AnimatedSection"
 
 export default function Home() {
   const { t } = useLanguage()
   const navigate = useNavigate()
 
   return (
-    <>
-      {/* Hero */}
-      <section className="max-w-7xl mx-auto px-6 pt-24 text-center">
-        <h1 className="text-5xl font-bold leading-tight text-gray-900 dark:text-white">
-          Schemes <br />
-          <span className="text-green-500">Made Easy</span>
-        </h1>
+    <div className="space-y-28">
 
-        <button
-          onClick={() => navigate("/search")}
-          className="mt-10 px-8 py-4 bg-green-500 text-black rounded-lg font-semibold"
-        >
-          {t.findSchemes}
-        </button>
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        {/* background glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-green-500/10 via-transparent to-transparent pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 pt-28 pb-20 text-center relative z-10">
+          <p className="text-green-500 font-semibold mb-4 tracking-wide">
+            Government & NGO Scheme Portal
+          </p>
+
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
+            Schemes <br />
+            <span className="text-green-500">Made Easy</span>
+          </h1>
+
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 dark:text-white/70">
+            Find government and NGO schemes you are eligible for —
+            all in one place, with simple explanations and direct
+            application links.
+          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => navigate("/search")}
+              className="px-8 py-4 bg-green-500 text-black rounded-lg font-semibold hover:bg-green-400 transition"
+            >
+              {t.findSchemes}
+            </button>
+
+            <button
+              onClick={() => navigate("/about")}
+              className="px-8 py-4 border border-white/20 rounded-lg hover:bg-white/10 transition"
+            >
+              Learn More
+            </button>
+          </div>
+
+          {/* trust indicators */}
+          <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-gray-500 dark:text-white/60">
+            <span>✔ 1000+ Schemes</span>
+            <span>✔ Central & State</span>
+            <span>✔ Government + NGO</span>
+          </div>
+        </div>
       </section>
 
-      <Stats />
-      <HowItWorks />
-      <Categories />
-      <NGOSchemes />
-    </>
+      {/* Sections with scroll animation */}
+      <AnimatedSection>
+        <Stats />
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.1}>
+        <HowItWorks />
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.2}>
+        <Categories />
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.3}>
+        <AboutSection />
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.4}>
+        <FAQSection />
+      </AnimatedSection>
+
+    </div>
   )
 }
