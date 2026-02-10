@@ -13,6 +13,16 @@ export default function FilterSidebar() {
     setParams(newParams)
   }
 
+  const STATES = [
+    "All",
+    "Delhi",
+    "Sikkim",
+    "Puducherry",
+    "Jammu and Kashmir",
+    "Gujarat",
+    "Meghalaya",
+  ]
+
   return (
     <aside className="w-full md:w-64 bg-slate-900 border border-white/10 rounded-lg p-6">
       <h2 className="text-lg font-semibold mb-4">
@@ -58,8 +68,8 @@ export default function FilterSidebar() {
           className="w-full px-3 py-2 rounded bg-slate-800 text-white"
         >
           <option value="">Any</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
       </div>
 
@@ -74,10 +84,13 @@ export default function FilterSidebar() {
           className="w-full px-3 py-2 rounded bg-slate-800 text-white"
         >
           <option value="">All</option>
-          <option value="All">All States</option>
-          <option value="Maharashtra">Maharashtra</option>
-          <option value="Karnataka">Karnataka</option>
-          <option value="Tamil Nadu">Tamil Nadu</option>
+          {STATES.map(state => (
+            <option key={state} value={state}>
+              {state === "All"
+                ? "All India (Central Schemes)"
+                : state}
+            </option>
+          ))}
         </select>
       </div>
     </aside>
