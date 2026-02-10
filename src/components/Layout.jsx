@@ -6,20 +6,19 @@ import { useTheme } from "../context/ThemeContext"
 
 export default function Layout({ children }) {
   const { theme } = useTheme()
-
   const isDark = theme === "dark"
 
   return (
     <div
       className={`min-h-screen transition-colors duration-300 ${
         isDark
-          ? "bg-gradient-to-b from-slate-900 to-black text-white"
+          ? "bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white"
           : "bg-gray-100 text-black"
       }`}
     >
       <Navbar />
 
-      <main className="pt-36">
+      <main className="pt-20 md:pt-24">
         {children}
       </main>
 
