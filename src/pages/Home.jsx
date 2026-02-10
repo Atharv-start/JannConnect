@@ -21,12 +21,12 @@ export default function Home() {
           <span className="text-green-500">Made Easy</span>
         </h1>
 
-        <button
+        {/* <button
           onClick={() => navigate("/search")}
           className="mt-10 px-8 py-4 bg-green-500 text-black rounded-lg font-semibold"
         >
           {t.findSchemes}
-        </button>
+        </button> */}
       </section>
 
       <Stats />

@@ -1,15 +1,23 @@
 import { useNavigate } from "react-router-dom"
+import Agriculture from "../assets/icons/Agriculture.svg"
+import Education from "../assets/icons/Education.svg"
+import Finance from "../assets/icons/Finance.svg"
+import Health from "../assets/icons/Health.svg"
+import WomenChild from "../assets/icons/WomenChild.svg"
+import Employment from "../assets/icons/Employment.svg"
+
+
 
 export default function Categories() {
   const navigate = useNavigate()
 
   const categories = [
-    { name: "Agriculture", slug: "agriculture", icon: "🌾" },
-    { name: "Education", slug: "education", icon: "🎓" },
-    { name: "Finance", slug: "finance", icon: "💰" },
-    { name: "Health", slug: "health", icon: "🏥" },
-    { name: "Women & Child", slug: "women-child", icon: "👩‍👧" },
-    { name: "Employment", slug: "employment", icon: "💼" },
+  { name: "Agriculture", icon: Agriculture },
+  { name: "Education", icon: Education },
+  { name: "Finance", icon: Finance },
+  { name: "Health", icon: Health },
+  { name: "Women & Child", icon: WomenChild },
+  { name: "Employment", icon: Employment },
   ]
 
   return (
@@ -38,7 +46,7 @@ export default function Categories() {
               hover:scale-105 transition
             "
           >
-            <div className="text-3xl">{cat.icon}</div>
+            <img src={cat.icon} className="w-10 h-10" />
             <p className="text-sm font-medium text-center">
               {cat.name}
             </p>

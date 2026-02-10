@@ -1,4 +1,9 @@
 import { useLanguage } from "../context/LanguageContext"
+import EnterDetails from "../assets/icons/EnterDetails.svg"
+import SearchIcon from "../assets/icons/Search.svg"
+import SelectApply from "../assets/icons/SelectApply.svg"
+
+
 
 export default function HowItWorks() {
   const { t } = useLanguage()
@@ -7,17 +12,17 @@ export default function HowItWorks() {
     {
       title: t.step1Title,
       desc: t.step1Desc,
-      icon: "📝",
+      icon: EnterDetails,
     },
     {
       title: t.step2Title,
       desc: t.step2Desc,
-      icon: "🔍",
+      icon: SearchIcon,
     },
     {
       title: t.step3Title,
       desc: t.step3Desc,
-      icon: "🖱️",
+      icon: SelectApply,
     },
   ]
 
@@ -44,9 +49,7 @@ export default function HowItWorks() {
                 hover:border-green-500 transition-all duration-300
               "
             >
-              <div className="text-4xl mb-4">
-                {step.icon}
-              </div>
+              <img src={step.icon} className="w-12 h-12 mx-auto mb-4" />
 
               <h3 className="text-lg font-semibold">
                 {step.title}
