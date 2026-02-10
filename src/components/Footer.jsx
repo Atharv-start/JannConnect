@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom"
 import { useLanguage } from "../context/LanguageContext"
 
 export default function Footer() {
   const { t } = useLanguage()
+
+  const linkStyle =
+    "hover:text-white transition-colors cursor-pointer"
 
   return (
     <footer className="mt-32 border-t border-white/10 bg-slate-950">
@@ -24,10 +28,21 @@ export default function Footer() {
             Important Links
           </h3>
           <ul className="space-y-2">
-            <li>About Us</li>
-            <li>Privacy Policy</li>
-            <li>Terms & Conditions</li>
-            <li>Disclaimer</li>
+            <li>
+              <Link to="/about" className={linkStyle}>
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacy" className={linkStyle}>
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/disclaimer" className={linkStyle}>
+                Disclaimer
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -37,10 +52,26 @@ export default function Footer() {
             Government
           </h3>
           <ul className="space-y-2">
-            <li>Ministries</li>
-            <li>Departments</li>
-            <li>States / UTs</li>
-            <li>Government Schemes</li>
+            <li>
+              <Link to="/ministries" className={linkStyle}>
+                Ministries
+              </Link>
+            </li>
+            <li>
+              <Link to="/departments" className={linkStyle}>
+                Departments
+              </Link>
+            </li>
+            <li>
+              <Link to="/states" className={linkStyle}>
+                States / UTs
+              </Link>
+            </li>
+            <li>
+              <Link to="/government-schemes" className={linkStyle}>
+                Government Schemes
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -50,10 +81,26 @@ export default function Footer() {
             Support
           </h3>
           <ul className="space-y-2">
-            <li>Help</li>
-            <li>FAQs</li>
-            <li>Feedback</li>
-            <li>Contact Us</li>
+            <li>
+              <Link to="/help" className={linkStyle}>
+                Help
+              </Link>
+            </li>
+            <li>
+              <Link to="/faqs" className={linkStyle}>
+                FAQs
+              </Link>
+            </li>
+            <li>
+              <Link to="/feedback" className={linkStyle}>
+                Feedback
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className={linkStyle}>
+                Contact Us
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

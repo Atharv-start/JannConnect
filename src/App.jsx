@@ -8,6 +8,15 @@ import Privacy from "./pages/Privacy"
 import Disclaimer from "./pages/Disclaimer"
 import SignIn from "./pages/SignIn"
 
+import Help from "./pages/Help"
+import FAQs from "./pages/FAQs"
+import Feedback from "./pages/Feedback"
+import Contact from "./pages/Contact"
+import Ministries from "./pages/Ministries"
+import Departments from "./pages/Departments"
+import States from "./pages/States"
+import GovernmentSchemes from "./pages/GovernmentSchemes"
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -19,6 +28,18 @@ export default function App() {
         <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
         <Route path="/disclaimer" element={<Layout><Disclaimer /></Layout>} />
         <Route path="/signin" element={<Layout><SignIn /></Layout>} />
+
+        {/* Support */}
+        <Route path="/help" element={<Layout><Help /></Layout>} />
+        <Route path="/faqs" element={<Layout><FAQs /></Layout>} />
+        <Route path="/feedback" element={<Layout><Feedback /></Layout>} />
+        <Route path="/contact" element={<Layout><Contact /></Layout>} />
+
+        {/* Government */}
+        <Route path="/ministries" element={<Layout><Ministries /></Layout>} />
+        <Route path="/departments" element={<Layout><Departments /></Layout>} />
+        <Route path="/states" element={<Layout><States /></Layout>} />
+        <Route path="/government-schemes" element={<Layout><GovernmentSchemes /></Layout>} />
       </Routes>
     </BrowserRouter>
   )
