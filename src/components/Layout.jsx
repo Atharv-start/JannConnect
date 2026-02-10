@@ -1,6 +1,7 @@
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import FloatingAccessibilityButton from "./FloatingAccessibilityButton"
+import Chatbot from "./Chatbot"
 import { useTheme } from "../context/ThemeContext"
 
 export default function Layout({ children }) {
@@ -24,6 +25,7 @@ export default function Layout({ children }) {
 
       <Footer />
       <FloatingAccessibilityButton />
+      <Chatbot />
     </div>
   )
 }
