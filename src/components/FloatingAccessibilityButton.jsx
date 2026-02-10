@@ -1,5 +1,7 @@
 import { useState } from "react"
 import AccessibilityPanel from "./AccessibilityPanel"
+import Accessibility from "../assets/icons/accessibility.svg"
+
 
 export default function FloatingAccessibilityButton() {
   const [open, setOpen] = useState(false)
@@ -9,11 +11,10 @@ export default function FloatingAccessibilityButton() {
       {/* Floating Button */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed right-4 top-1/2 -translate-y-1/2
+        className="fixed right-4 top-24
                    z-[9999]
-                   w-14 h-14
+                   w-15 h-15
                    rounded-full
-                   bg-purple-600
                    text-white
                    text-xl
                    font-bold
@@ -21,7 +22,10 @@ export default function FloatingAccessibilityButton() {
                    hover:scale-105 transition"
         aria-label="Accessibility options"
       >
-        A
+        <img
+          src={Accessibility}
+          className="w-full h-full p-2 object-contain"
+        />  
       </button>
 
       {open && (
