@@ -6,18 +6,16 @@ import Health from "../assets/icons/Health.svg"
 import WomenChild from "../assets/icons/WomenChild.svg"
 import Employment from "../assets/icons/Employment.svg"
 
-
-
 export default function Categories() {
   const navigate = useNavigate()
 
   const categories = [
-  { name: "Agriculture", icon: Agriculture },
-  { name: "Education", icon: Education },
-  { name: "Finance", icon: Finance },
-  { name: "Health", icon: Health },
-  { name: "Women & Child", icon: WomenChild },
-  { name: "Employment", icon: Employment },
+    { name: "Agriculture", icon: Agriculture },
+    { name: "Education", icon: Education },
+    { name: "Finance", icon: Finance },
+    { name: "Health", icon: Health },
+    { name: "Women and Child", icon: WomenChild },
+    { name: "Employment", icon: Employment },
   ]
 
   return (
@@ -29,9 +27,11 @@ export default function Categories() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {categories.map(cat => (
           <div
-            key={cat.slug}
+            key={cat.name}
             onClick={() =>
-              navigate(`/search?category=${cat.slug}`)
+              navigate(
+                `/search?category=${encodeURIComponent(cat.name)}`
+              )
             }
             className="
               cursor-pointer
@@ -46,7 +46,11 @@ export default function Categories() {
               hover:scale-105 transition
             "
           >
-            <img src={cat.icon} className="w-10 h-10" />
+            <img
+              src={cat.icon}
+              alt={cat.name}
+              className="w-10 h-10"
+            />
             <p className="text-sm font-medium text-center">
               {cat.name}
             </p>
