@@ -555,6 +555,239 @@ const schemes = [
       hi: "प्रौद्योगिकी अनुसंधान के लिए फेलोशिप।",
     },
   },
+  {id: "SCH037",
+    name: "Stand-Up India",
+    type: "government",
+    category: ["Finance"],
+    targetGroup: ["scheduled_caste", "scheduled_tribe", "women", "entrepreneur"],
+    states: ["All"],
+    eligibility: {
+      minAge: 18,
+      greenfieldEnterprise: true,
+    },
+    benefits:
+      "Bank loan between ₹10 lakh and ₹1 crore to set up a new business.",
+    documentsRequired: [
+      "Proof of Identity (Voter ID / Passport / Driving License / PAN)",
+      "Proof of Residence",
+      "Proof of Business Address",
+      "Non-defaulter declaration from bank/financial institution",
+      "Memorandum & Articles of Association / Partnership Deed (if applicable)",
+      "Assets and Liabilities Statement of promoters/guarantors",
+      "Income Tax Returns",
+    ],
+    applicationProcess: [
+      "Apply through nearest bank branch or Lead District Manager (LDM)",
+      "Or register and apply online via Stand-Up India portal",
+      "Fill business, personal, and loan requirement details",
+      "Submit application and await bank contact for appraisal and sanction",
+    ],
+    applyLink: "https://www.standupmitra.in",
+    simpleExplanation: {
+      en: "Helps SC/ST and women entrepreneurs start new businesses.",
+      hi: "SC/ST और महिला उद्यमियों के लिए व्यवसाय ऋण।",
+    },
+  },
+  {
+    id: "SCH038",
+    name: "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+    type: "government",
+    category: ["Finance"],
+    targetGroup: ["bank_account_holder"],
+    states: ["All"],
+    eligibility: {
+      minAge: 18,
+      maxAge: 70,
+    },
+    benefits:
+      "Accidental death or disability insurance cover up to ₹2 lakh at ₹20/year.",
+    documentsRequired: [
+      "Duly filled Consent-cum-Declaration Form",
+      "Bank Account",
+      "Aadhaar",
+    ],
+    applicationProcess: [
+      "Download and print the Consent-cum-Declaration Form",
+      "Fill, sign, and attach self-attested documents",
+      "Submit the form to authorised Bank or Post Office",
+      "Receive Acknowledgement Slip cum Certificate of Insurance",
+      "Alternatively apply online via bank net banking",
+    ],
+    applyLink: "https://jansuraksha.gov.in",
+    simpleExplanation: {
+      en: "Low-cost accident insurance for everyone.",
+      hi: "सस्ती दुर्घटना बीमा योजना।",
+    },
+  },
+
+  {
+    id: "SCH039",
+    name:
+      "Financial Assistance for Marriage of Daughters of Poor Widows & Orphans (Delhi)",
+    type: "state",
+    category: ["Finance"],
+    targetGroup: ["widow", "orphan_girl"],
+    states: ["Delhi"],
+    eligibility: {
+      maxIncome: 100000,
+    },
+    benefits:
+      "One-time marriage assistance of ₹30,000.",
+    documentsRequired: [
+      "Recommendation from MLA or MP",
+      "Death certificate of husband (for widow applicants)",
+      "Ration Card / Voter ID / Proof of residence",
+      "Self-declaration of income",
+      "Age proof of the girl",
+      "Affidavit confirming orphan status (if applicable)",
+      "Affidavit from guardian/foster parent (if applicable)",
+      "Marriage invitation card",
+      "Self-declaration of non-receipt of similar assistance",
+      "Aadhaar Card",
+    ],
+    applicationProcess: [
+      "Apply online via e-District Delhi portal",
+    ],
+    applyLink: "https://edistrict.delhigovt.nic.in",
+    simpleExplanation: {
+      en: "Marriage support for daughters of widows and orphans.",
+      hi: "विधवा और अनाथ लड़कियों के विवाह हेतु सहायता।",
+    },
+  },
+
+  {
+    id: "SCH040",
+    name:
+      "Use of Advanced Drone Technology (Agriculture Aircraft) in Agriculture Sector",
+    type: "state",
+    category: ["Agriculture"],
+    targetGroup: ["farmer"],
+    states: ["Gujarat"],
+    eligibility: {
+      minLandHoldingAcres: 1,
+      maxLandCoveragePerSpray: 5,
+      aadhaarRequired: true,
+      bankAccountRequired: true,
+    },
+    benefits:
+      "90% financial assistance or max ₹500 per acre per spraying (up to 5 acres).",
+    documentsRequired: [
+      "Aadhaar Card",
+      "Land Ownership Documents",
+      "Bank Passbook",
+      "Cancelled Cheque",
+      "Certified Purchase Bill",
+      "Signed Online Application Form (i-Khedut)",
+    ],
+    applicationProcess: [
+      "Apply online via i-Khedut Portal",
+      "Select Agricultural Schemes",
+      "Submit and confirm application",
+      "Print and submit documents to concerned office",
+      "Track application status online",
+    ],
+    applyLink: "https://ikhedut.gujarat.gov.in/",
+    simpleExplanation: {
+      en: "Helps farmers use drones for spraying fertilizers and pesticides.",
+      hi: "ड्रोन से छिड़काव हेतु किसानों को सहायता।",
+    },
+  },
+
+  {
+    id: "SCH041",
+    name: "Sardar Patel Agriculture Research Award",
+    type: "state",
+    category: ["Agriculture"],
+    targetGroup: ["farmer"],
+    states: ["Gujarat"],
+    eligibility: {
+      domicile: "Gujarat",
+      landOwnershipRequired: true,
+    },
+    benefits:
+      "₹51,000 cash award with shawl and certificate for innovative farmers.",
+    documentsRequired: [
+      "Aadhaar Card",
+      "Passport-size photographs",
+      "Bank Passbook / Cancelled Cheque",
+      "Residence Proof",
+      "Land Ownership Proof (if applicable)",
+      "Caste Certificate (if applicable)",
+      "Photos and videos of work done",
+      "Copies of previous awards",
+    ],
+    applicationProcess: [
+      "Download or collect application form",
+      "Fill and attach documents",
+      "Submit via District Agriculture Officer",
+      "Submit before 31st May",
+    ],
+    applyLink: "https://www.myscheme.gov.in/schemes/spara",
+    simpleExplanation: {
+      en: "Honours innovative farmers contributing to agricultural research.",
+      hi: "कृषि नवाचार करने वाले किसानों को सम्मान।",
+    },
+  },
+
+  {
+    id: "SCH042",
+    name: "National Agriculture Insurance Scheme (NAIS)",
+    type: "government",
+    category: ["Agriculture"],
+    targetGroup: ["farmer"],
+    states: ["All"],
+    eligibility: {
+      farmerType: ["loanee", "non_loanee"],
+    },
+    benefits:
+      "Crop insurance covering losses due to natural calamities, pests, and diseases.",
+    documentsRequired: [
+      "Aadhaar Card or ID Proof",
+      "Land Records / Tenancy Agreement",
+      "Crop Sowing Certificate (if required)",
+      "Bank Account Details",
+    ],
+    applicationProcess: [
+      "Loanee farmers enrolled automatically through bank",
+      "Non-loanee farmers apply via bank or insurance office",
+      "Submit documents and pay premium",
+    ],
+    applyLink: "https://www.pmfby.gov.in/",
+    simpleExplanation: {
+      en: "Insurance protection against crop losses.",
+      hi: "फसल नुकसान से सुरक्षा हेतु बीमा योजना।",
+    },
+  },
+
+  {
+    id: "SCH061",
+    name:
+      "Integrated Technology Enabled Agriculture Management System (iTEAMS)",
+    type: "state",
+    category: ["Agriculture"],
+    targetGroup: ["farmer"],
+    states: ["Meghalaya"],
+    eligibility: {
+      residency: "Meghalaya",
+      occupation: "farmer",
+    },
+    benefits:
+      "Free advisory, logistics support, market linkage, and transport services.",
+    documentsRequired: [
+      "Active Mobile Number",
+    ],
+    applicationProcess: [
+      "Dial toll-free number 1917",
+      "Register as a farmer",
+      "Access advisory and transport services",
+    ],
+    applyLink: "https://megagriculture.gov.in/",
+    simpleExplanation: {
+      en: "Single helpline for Meghalaya farmers.",
+      hi: "मेघालय के किसानों के लिए एकीकृत हेल्पलाइन।",
+    },
+  },
+  
 ];
 
 // Upload function
