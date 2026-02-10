@@ -18,6 +18,10 @@ export default function SearchResults() {
 
   const [searchParams] = useSearchParams()
   const categoryParam = searchParams.get("category")
+  const ageParam = searchParams.get("age")
+  const incomeParam = searchParams.get("income")
+  const genderParam = searchParams.get("gender")
+  const stateParam = searchParams.get("state")
 
   useEffect(() => {
     async function fetchSchemes() {
@@ -41,10 +45,52 @@ export default function SearchResults() {
             s.type.toLowerCase() === activeTab
         )
     ).filter(s => {
-      // category filter (fixed)
-      if (!categoryParam) return true
-      if (!s.category) return true
-      return s.category.includes(categoryParam)
+      // CATEGORY FILTER
+      if (categoryParam) {
+        if (
+          !(s.category || []).some(c =>
+            c.toLowerCase().includes(categoryParam.toLowerCase())
+          )
+        ) {
+          return false
+        }
+      }
+
+      // STATE FILTER
+      if (stateParam && stateParam !== "All") {
+        if (
+          !(s.states || []).includes("All") &&
+          !(s.states || []).includes(stateParam)
+        ) {
+          return false
+        }
+      }
+
+      // AGE FILTER
+      if (ageParam) {
+        const age = parseInt(ageParam)
+        const e = s.eligibility || {}
+        const min = e.minAge ?? 0
+        const max = e.maxAge ?? 120
+        if (age < min || age > max) return false
+      }
+
+      // INCOME FILTER
+      if (incomeParam) {
+        const income = parseInt(incomeParam)
+        const maxIncome = s.eligibility?.maxIncome
+        if (maxIncome && income > maxIncome) return false
+      }
+
+      // GENDER FILTER
+      if (genderParam) {
+        const g = s.eligibility?.gender
+        if (g && g.toLowerCase() !== genderParam.toLowerCase()) {
+          return false
+        }
+      }
+
+      return true
     })
 
   return (

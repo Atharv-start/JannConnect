@@ -15,16 +15,18 @@ export default function Home() {
     <div className="space-y-28">
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        {/* background glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-green-500/10 via-transparent to-transparent pointer-events-none" />
+      <section className="relative overflow-hidden pt-32 pb-32 text-center">
 
-        <div className="max-w-7xl mx-auto px-6 pt-28 pb-20 text-center relative z-10">
-          <p className="text-green-500 font-semibold mb-4 tracking-wide">
+        {/* Soft green glow background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-green-500/20 via-green-500/10 to-transparent pointer-events-none" />
+
+        {/* Hero content */}
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <p className="text-green-400 font-semibold mb-4 tracking-wide">
             Government & NGO Scheme Portal
           </p>
 
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight">
             Schemes <br />
             <span className="text-green-500">Made Easy</span>
           </h1>
@@ -51,7 +53,7 @@ export default function Home() {
             </button>
           </div>
 
-          {/* trust indicators */}
+          {/* Trust indicators */}
           <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-gray-500 dark:text-white/60">
             <span>✔ 1000+ Schemes</span>
             <span>✔ Central & State</span>
