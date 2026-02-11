@@ -5,6 +5,7 @@ const LanguageContext = createContext()
 const translations = {
   en: {
     signIn: "Sign In",
+    brand: "JannConnect",
     logout: "Logout",
     greeting: "Hi",
     searchPlaceholder: "Search schemes...",
@@ -12,11 +13,22 @@ const translations = {
     heroTitle2: "Made Easy",
     heroDesc:
       "Discover, understand, and apply for Government and NGO schemes.",
-    findSchemes: "View Schemes",
+    findSchemes: "Find Schemes for you",
     searchResults: "Search Results",
     filters: "Filters",
     browseCategory: "Browse by Category",
     ngoSchemesTitle: "NGO Schemes",
+    hero_tagline: "Government & NGO Scheme Portal",
+hero_title_line1: "Schemes",
+hero_title_line2: "Made Easy",
+hero_description:
+  "Find government and NGO schemes you are eligible for — all in one place, with simple explanations and direct application links.",
+hero_cta_primary: "Find Schemes for you",
+hero_cta_secondary: "Learn More",
+hero_feature1: "1000+ Schemes",
+hero_feature2: "Central & State",
+hero_feature3: "Government + NGO",
+
 
     overview: "Overview",
     benefits: "Benefits",
@@ -73,6 +85,7 @@ const translations = {
 
   hi: {
     signIn: "साइन इन",
+     brand: "जनकनेक्ट",
     logout: "लॉग आउट",
     greeting: "नमस्ते",
     searchPlaceholder: "योजनाएं खोजें...",
@@ -85,6 +98,17 @@ const translations = {
     filters: "फ़िल्टर",
     browseCategory: "श्रेणी के अनुसार ब्राउज़ करें",
     ngoSchemesTitle: "एनजीओ योजनाएं",
+    hero_tagline: "सरकारी और NGO योजनाओं का पोर्टल",
+hero_title_line1: "योजनाएँ",
+hero_title_line2: "अब आसान",
+hero_description:
+  "सरकारी और NGO योजनाएँ खोजें जिनके आप पात्र हैं — एक ही जगह पर, सरल जानकारी और सीधे आवेदन लिंक के साथ।",
+hero_cta_primary: "आपके लिए योजनाएँ खोजें",
+hero_cta_secondary: "और जानें",
+hero_feature1: "1000+ योजनाएँ",
+hero_feature2: "केंद्र और राज्य",
+hero_feature3: "सरकार + NGO",
+
 
     overview: "सारांश",
     benefits: "लाभ",
@@ -208,6 +232,7 @@ const translations = {
 
   ta: {
     signIn: "உள்நுழைக",
+    brand: "ஜன் கனெக்ட்",
     logout: "வெளியேறு",
     greeting: "வணக்கம்",
     searchPlaceholder: "திட்டங்களைத் தேடுங்கள்...",
@@ -219,6 +244,17 @@ const translations = {
     filters: "வடிப்பாக்கங்கள்",
     browseCategory: "வகைப்படி உலாவுங்கள்",
     ngoSchemesTitle: "என்ஜிஓ திட்டங்கள்",
+    hero_tagline: "ప్రభుత్వ & NGO పథకాల పోర్టల్",
+hero_title_line1: "పథకాలు",
+hero_title_line2: "సులభంగా",
+hero_description:
+  "మీకు అర్హత ఉన్న ప్రభుత్వ మరియు NGO పథకాలను ఒకేచోట సులభంగా కనుగొనండి.",
+hero_cta_primary: "మీ కోసం పథకాలు కనుగొనండి",
+hero_cta_secondary: "ఇంకా తెలుసుకోండి",
+hero_feature1: "1000+ పథకాలు",
+hero_feature2: "కేంద్ర & రాష్ట్ర",
+hero_feature3: "ప్రభుత్వం + NGO",
+
 
     overview: "கண்ணோட்டம்",
     benefits: "நன்மைகள்",

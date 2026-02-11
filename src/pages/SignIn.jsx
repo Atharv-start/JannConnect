@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
-import { getUser, createUser, verifyUser } from "../services/userService"
+import { createUser, verifyUser } from "../services/userService"
 
 export default function SignIn() {
   const [name, setName] = useState("")
@@ -21,12 +21,10 @@ export default function SignIn() {
 
     try {
       if (isRegister) {
-        // Register new user
         await createUser({ name, email, password })
         login({ name, email })
         navigate("/onboarding")
       } else {
-        // Login existing user
         const user = await verifyUser(email, password)
 
         if (!user) {
@@ -42,20 +40,20 @@ export default function SignIn() {
           navigate("/onboarding")
         }
       }
-    } catch (err) {
+    } catch {
       setError("Something went wrong")
     }
   }
 
   return (
     <section className="max-w-md mx-auto px-6 py-32">
-      <h1 className="text-3xl font-bold mb-6 text-center">
+      <h1 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">
         {isRegister ? "Register" : "Sign In"}
       </h1>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-slate-900 border border-white/10 rounded-lg p-6 space-y-4"
+        className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 rounded-lg p-6 space-y-4 text-gray-900 dark:text-white"
       >
         {isRegister && (
           <div>
@@ -66,7 +64,7 @@ export default function SignIn() {
               type="text"
               value={name}
               onChange={e => setName(e.target.value)}
-              className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+              className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
               required
             />
           </div>
@@ -80,7 +78,7 @@ export default function SignIn() {
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+            className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
             required
           />
         </div>
@@ -93,13 +91,13 @@ export default function SignIn() {
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+            className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
             required
           />
         </div>
 
         {error && (
-          <p className="text-red-400 text-sm">
+          <p className="text-red-500 text-sm">
             {error}
           </p>
         )}
@@ -112,7 +110,7 @@ export default function SignIn() {
         </button>
 
         <p
-          className="text-center text-sm text-gray-400 cursor-pointer"
+          className="text-center text-sm text-gray-500 dark:text-gray-400 cursor-pointer"
           onClick={() => setIsRegister(!isRegister)}
         >
           {isRegister

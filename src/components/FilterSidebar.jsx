@@ -14,7 +14,7 @@ export default function FilterSidebar() {
   }
 
   return (
-    <aside className="w-full md:w-64 bg-slate-900 border border-white/10 rounded-lg p-6">
+    <aside className="w-full md:w-64 bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 rounded-lg p-6 text-gray-900 dark:text-white">
       <h2 className="text-lg font-semibold mb-4">
         Filters
       </h2>
@@ -29,7 +29,7 @@ export default function FilterSidebar() {
           placeholder="Enter age"
           value={params.get("age") || ""}
           onChange={e => updateParam("age", e.target.value)}
-          className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+          className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
         />
       </div>
 
@@ -43,7 +43,7 @@ export default function FilterSidebar() {
           placeholder="Enter income"
           value={params.get("income") || ""}
           onChange={e => updateParam("income", e.target.value)}
-          className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+          className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
         />
       </div>
 
@@ -55,7 +55,7 @@ export default function FilterSidebar() {
         <select
           value={params.get("gender") || ""}
           onChange={e => updateParam("gender", e.target.value)}
-          className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+          className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
         >
           <option value="">Any</option>
           <option value="Male">Male</option>
@@ -63,7 +63,7 @@ export default function FilterSidebar() {
         </select>
       </div>
 
-      {/* State / Coverage */}
+      {/* State */}
       <div>
         <label className="block text-sm mb-1">
           State / Coverage
@@ -71,14 +71,18 @@ export default function FilterSidebar() {
         <select
           value={params.get("state") || ""}
           onChange={e => updateParam("state", e.target.value)}
-          className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+          className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
         >
           <option value="">All</option>
-          <option value="All India">All India (Central Schemes)</option>
+          <option value="All India">
+            All India (Central Schemes)
+          </option>
           <option value="Delhi">Delhi</option>
           <option value="Sikkim">Sikkim</option>
           <option value="Puducherry">Puducherry</option>
-          <option value="Jammu and Kashmir">Jammu & Kashmir</option>
+          <option value="Jammu and Kashmir">
+            Jammu & Kashmir
+          </option>
           <option value="Gujarat">Gujarat</option>
           <option value="Meghalaya">Meghalaya</option>
         </select>

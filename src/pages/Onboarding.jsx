@@ -133,12 +133,8 @@ export default function Onboarding() {
 
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500/10 via-transparent to-green-500/10 blur-2xl pointer-events-none" />
 
-        {/* Live match count */}
-        <div className="text-center mb-6">
-          <p className="text-green-400 text-lg font-semibold">
-            {matchCount} schemes match your profile
-          </p>
-        </div>
+       
+
 
         <AnimatePresence mode="wait">
           <motion.div
@@ -157,7 +153,7 @@ export default function Onboarding() {
                 </h2>
 
                 <div className="flex gap-4">
-                  {["male", "female", "transgender"].map(g => (
+                  {["Male", "Female", "Transgender"].map(g => (
                     <button
                       key={g}
                       onClick={() => setValue("gender", g)}
@@ -231,7 +227,7 @@ export default function Onboarding() {
                 />
 
                 <div className="flex gap-4">
-                  {["urban", "rural"].map(a => (
+                  {["Urban", "Rural"].map(a => (
                     <button
                       key={a}
                       onClick={() => setValue("area", a)}
@@ -278,85 +274,139 @@ export default function Onboarding() {
               </div>
             )}
 
-            {/* STEP 4 */}
-            {step === 4 && (
-              <div className="space-y-6">
-                <h2>Disability?</h2>
-                {["yes", "no"].map(v => (
-                  <button
-                    key={v}
-                    onClick={() => setValue("disability", v)}
-                    className={`px-6 py-3 border rounded ${
-                      form.disability === v
-                        ? "bg-green-500 text-black"
-                        : "border-white/20"
-                    }`}
-                  >
-                    {v}
-                  </button>
-                ))}
+            {/* Step 4 */}
+{step === 4 && (
+  <div className="space-y-10 text-center">
+    {/* Disability */}
+    <div>
+      <h2 className="text-xl mb-4">
+        Do you identify as a person with a disability?
+      </h2>
 
-                <h2>Minority?</h2>
-                {["yes", "no"].map(v => (
-                  <button
-                    key={v}
-                    onClick={() => setValue("minority", v)}
-                    className={`px-6 py-3 border rounded ${
-                      form.minority === v
-                        ? "bg-green-500 text-black"
-                        : "border-white/20"
-                    }`}
-                  >
-                    {v}
-                  </button>
-                ))}
+      <div className="flex justify-center gap-4">
+        {["yes", "no"].map(v => (
+          <button
+            key={v}
+            onClick={() => setValue("disability", v)}
+            className={`px-8 py-3 border rounded-lg min-w-[120px] ${
+              form.disability === v
+                ? "bg-green-500 text-black"
+                : "border-white/30"
+            }`}
+          >
+            {v.toUpperCase()}
+          </button>
+        ))}
+      </div>
+    </div>
 
-                <div className="flex gap-4">
-                  <button onClick={back} className="border px-4 py-2 rounded">Back</button>
-                  <button onClick={next} className="bg-green-500 text-black px-4 py-2 rounded">Next</button>
-                </div>
-              </div>
-            )}
+    {/* Minority */}
+    <div>
+      <h2 className="text-xl mb-4">
+        Do you belong to a minority group?
+      </h2>
 
-            {/* STEP 5 */}
-            {step === 5 && (
-              <div className="space-y-6">
-                <h2>Are you a student?</h2>
-                {["yes", "no"].map(v => (
-                  <button
-                    key={v}
-                    onClick={() => setValue("student", v)}
-                    className={`px-6 py-3 border rounded ${
-                      form.student === v
-                        ? "bg-green-500 text-black"
-                        : "border-white/20"
-                    }`}
-                  >
-                    {v}
-                  </button>
-                ))}
+      <div className="flex justify-center gap-4">
+        {["yes", "no"].map(v => (
+          <button
+            key={v}
+            onClick={() => setValue("minority", v)}
+            className={`px-8 py-3 border rounded-lg min-w-[120px] ${
+              form.minority === v
+                ? "bg-green-500 text-black"
+                : "border-white/30"
+            }`}
+          >
+            {v.toUpperCase()}
+          </button>
+        ))}
+      </div>
+    </div>
 
-                <h2>Do you belong to BPL?</h2>
-                {["yes", "no"].map(v => (
-                  <button
-                    key={v}
-                    onClick={() => setValue("bpl", v)}
-                    className={`px-6 py-3 border rounded ${
-                      form.bpl === v
-                        ? "bg-green-500 text-black"
-                        : "border-white/20"
-                    }`}
-                  >
-                    {v}
-                  </button>
-                ))}
+    <div className="flex justify-center gap-4 pt-4">
+      <button
+        onClick={back}
+        className="border px-6 py-2 rounded"
+      >
+        Back
+      </button>
+      <button
+        onClick={next}
+        className="bg-green-500 text-black px-6 py-2 rounded"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+)}
 
-                <div className="flex gap-4">
-                  <button onClick={back} className="border px-4 py-2 rounded">Back</button>
-                  <button onClick={handleSubmit} className="bg-green-500 text-black px-4 py-2 rounded">Submit</button>
-                </div>
-              </div>
-            )}
+
+           {/* Step 5 */}
+{step === 5 && (
+  <div className="space-y-10 text-center">
+    {/* Student */}
+    <div>
+      <h2 className="text-xl mb-4">
+        Are you a student?
+      </h2>
+
+      <div className="flex justify-center gap-4">
+        {["yes", "no"].map(v => (
+          <button
+            key={v}
+            onClick={() => setValue("student", v)}
+            className={`px-8 py-3 border rounded-lg min-w-[120px] ${
+              form.student === v
+                ? "bg-green-500 text-black"
+                : "border-white/30"
+            }`}
+          >
+            {v.toUpperCase()}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {/* BPL */}
+    <div>
+      <h2 className="text-xl mb-4">
+        Do you belong to BPL category?
+      </h2>
+
+      <div className="flex justify-center gap-4">
+        {["yes", "no"].map(v => (
+          <button
+            key={v}
+            onClick={() => setValue("bpl", v)}
+            className={`px-8 py-3 border rounded-lg min-w-[120px] ${
+              form.bpl === v
+                ? "bg-green-500 text-black"
+                : "border-white/30"
+            }`}
+          >
+            {v.toUpperCase()}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div className="flex justify-center gap-4 pt-4">
+      <button
+        onClick={back}
+        className="border px-6 py-2 rounded"
+      >
+        Back
+      </button>
+      <button
+        onClick={handleSubmit}
+        className="bg-green-500 text-black px-6 py-2 rounded"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+)}
+
 
           </motion.div>
         </AnimatePresence>

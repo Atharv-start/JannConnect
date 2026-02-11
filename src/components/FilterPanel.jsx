@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function FilterPanel({
   filters,
@@ -7,12 +7,9 @@ export default function FilterPanel({
   onClose,
 }) {
   const navigate = useNavigate()
-  const [params] = useSearchParams()
 
   function applyFilters(e) {
     e.preventDefault()
-    // Filters are already applied in real-time via state
-    // Just close the panel
     onClose()
   }
 
@@ -23,9 +20,11 @@ export default function FilterPanel({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex justify-end">
-      <div className="w-full max-w-sm bg-slate-900 h-full p-6 overflow-y-auto">
+      <div className="w-full max-w-sm bg-white dark:bg-slate-900 h-full p-6 overflow-y-auto text-gray-900 dark:text-white">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">Filters</h2>
+          <h2 className="text-xl font-semibold">
+            Filters
+          </h2>
           <button onClick={onClose} className="text-xl">
             ✕
           </button>
@@ -34,16 +33,17 @@ export default function FilterPanel({
         <form onSubmit={applyFilters} className="space-y-4">
           {/* Age */}
           <div>
-            <label className="block text-sm mb-1">Age</label>
+            <label className="block text-sm mb-1">
+              Age
+            </label>
             <input
               type="number"
               placeholder="Enter age"
               value={filters.age}
-              onChange={e => {
-                console.log("🔍 FILTER UPDATE - Age:", e.target.value)
+              onChange={e =>
                 onFilterChange("age", e.target.value)
-              }}
-              className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+              }
+              className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
             />
           </div>
 
@@ -56,24 +56,24 @@ export default function FilterPanel({
               type="number"
               placeholder="Enter income"
               value={filters.income}
-              onChange={e => {
-                console.log("🔍 FILTER UPDATE - Income:", e.target.value)
+              onChange={e =>
                 onFilterChange("income", e.target.value)
-              }}
-              className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+              }
+              className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
             />
           </div>
 
           {/* Gender */}
           <div>
-            <label className="block text-sm mb-1">Gender</label>
+            <label className="block text-sm mb-1">
+              Gender
+            </label>
             <select
               value={filters.gender}
-              onChange={e => {
-                console.log("🔍 FILTER UPDATE - Gender:", e.target.value)
+              onChange={e =>
                 onFilterChange("gender", e.target.value)
-              }}
-              className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+              }
+              className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
             >
               <option value="">Any Gender</option>
               <option value="female">Female</option>
@@ -88,18 +88,20 @@ export default function FilterPanel({
             </label>
             <select
               value={filters.state}
-              onChange={e => {
-                console.log("🔍 FILTER UPDATE - State:", e.target.value)
+              onChange={e =>
                 onFilterChange("state", e.target.value)
-              }}
-              className="w-full px-3 py-2 rounded bg-slate-800 text-white"
+              }
+              className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
             >
-              <option value="">All India (Central Schemes)</option>
-              <option value="All">All</option>
+              <option value="">
+                All India (Central Schemes)
+              </option>
               <option value="Delhi">Delhi</option>
               <option value="Sikkim">Sikkim</option>
               <option value="Puducherry">Puducherry</option>
-              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Jammu and Kashmir">
+                Jammu and Kashmir
+              </option>
               <option value="Gujarat">Gujarat</option>
               <option value="Meghalaya">Meghalaya</option>
             </select>
@@ -117,7 +119,7 @@ export default function FilterPanel({
           <button
             type="button"
             onClick={handleClearFilters}
-            className="w-full border border-white/20 py-2 rounded"
+            className="w-full border border-gray-300 dark:border-white/20 py-2 rounded"
           >
             Clear All Filters
           </button>
@@ -126,3 +128,4 @@ export default function FilterPanel({
     </div>
   )
 }
+ 
