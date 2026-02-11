@@ -18,6 +18,9 @@ import Departments from "./pages/Departments"
 import States from "./pages/States"
 import GovernmentSchemes from "./pages/GovernmentSchemes"
 
+import Onboarding from "./pages/Onboarding"
+import Dashboard from "./pages/Dashboard"
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -29,6 +32,10 @@ export default function App() {
         <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
         <Route path="/disclaimer" element={<Layout><Disclaimer /></Layout>} />
         <Route path="/signin" element={<Layout><SignIn /></Layout>} />
+
+        {/* Onboarding & Dashboard */}
+        <Route path="/onboarding" element={<Layout><Onboarding /></Layout>} />
+        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
 
         {/* Support */}
         <Route path="/help" element={<Layout><Help /></Layout>} />
