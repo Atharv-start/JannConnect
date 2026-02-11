@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useLanguage } from "../context/LanguageContext"
 import { useAccessibility } from "../context/AccessibilityContext"
@@ -16,13 +16,17 @@ export default function SearchResults() {
   const [filterOpen, setFilterOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("all")
 
+  // FILTER STATE - Using useState for reactive filtering
+  const [filters, setFilters] = useState({
+    age: "",
+    income: "",
+    gender: "",
+    state: "",
+  })
+
   const [searchParams] = useSearchParams()
   const queryParam = searchParams.get("q")
   const categoryParam = searchParams.get("category")
-  const ageParam = searchParams.get("age")
-  const incomeParam = searchParams.get("income")
-  const genderParam = searchParams.get("gender")
-  const stateParam = searchParams.get("state")
 
   useEffect(() => {
     async function fetchSchemes() {
@@ -33,95 +37,101 @@ export default function SearchResults() {
     fetchSchemes()
   }, [])
 
+  // APPLY ALL FILTERS - Memoized filtering with strict rules
+  // This must be BEFORE any conditional returns to follow Rules of Hooks
+  const filteredSchemes = useMemo(() => {
+    return schemes
+      // Filter by scheme type (tab)
+      .filter(s => {
+        if (activeTab === "all") return true
+        return s.type && s.type.toLowerCase() === activeTab
+      })
+      // Apply all filter conditions
+      .filter(s => {
+        // TEXT SEARCH FILTER
+        if (queryParam) {
+          const q = queryParam.toLowerCase()
+          const nameMatch = s.name?.toLowerCase().includes(q)
+          const categoryMatch = (s.category || []).some(c =>
+            c.toLowerCase().includes(q)
+          )
+          const descMatch =
+            s.simpleExplanation?.en?.toLowerCase().includes(q) ||
+            s.simpleExplanation?.[lang]?.toLowerCase().includes(q)
+
+          if (!nameMatch && !categoryMatch && !descMatch) {
+            return false
+          }
+        }
+
+        // CATEGORY FILTER
+        if (categoryParam) {
+          if (
+            !(s.category || []).some(c =>
+              c.toLowerCase().includes(categoryParam.toLowerCase())
+            )
+          ) {
+            return false
+          }
+        }
+
+        // STATE FILTER - Apply only when state is selected
+        if (filters.state) {
+          const states = s.states || []
+          // Exclude nationwide schemes when a specific state is selected
+          if (states.length === 1 && states[0].toLowerCase() === "all") {
+            return false
+          }
+          // Include only if selected state is in the scheme's states array (case-insensitive)
+          const selectedStateLower = filters.state.toLowerCase()
+          const hasState = states.some(st => st.toLowerCase() === selectedStateLower)
+          if (!hasState) {
+            return false
+          }
+        }
+
+        // AGE FILTER - Apply only when age is provided
+        if (filters.age) {
+          const userAge = parseInt(filters.age, 10)
+          if (!isNaN(userAge)) {
+            const eligibility = s.eligibility || {}
+            const minAge = eligibility.minAge ?? 0
+            const maxAge = eligibility.maxAge ?? 120
+            // Exclude if age is outside eligibility range
+            if (userAge < minAge || userAge > maxAge) {
+              return false
+            }
+          }
+        }
+
+        // INCOME FILTER - Apply only when income is provided
+        if (filters.income) {
+          const userIncome = parseInt(filters.income, 10)
+          if (!isNaN(userIncome)) {
+            const maxIncome = s.eligibility?.maxIncome
+            // Only filter if scheme specifies a max income constraint
+            if (maxIncome && userIncome > maxIncome) {
+              return false
+            }
+          }
+        }
+
+        // GENDER FILTER - Apply only when gender is selected
+        if (filters.gender) {
+          const schemeGender = s.eligibility?.gender
+          // Include only if gender requirement exists and matches exactly
+          if (!schemeGender || schemeGender.toLowerCase() !== filters.gender.toLowerCase()) {
+            return false
+          }
+        }
+
+        return true
+      })
+  }, [schemes, filters, activeTab, queryParam, categoryParam, lang])
+
   if (loading) {
     return <p className="p-6">Loading schemes…</p>
   }
-
-  const filteredSchemes =
-    (activeTab === "all"
-      ? schemes
-      : schemes.filter(
-          s =>
-            s.type &&
-            s.type.toLowerCase() === activeTab
-        )
-    ).filter(s => {
-      // TEXT SEARCH FILTER
-      if (queryParam) {
-        const q = queryParam.toLowerCase()
-
-        const nameMatch = s.name?.toLowerCase().includes(q)
-
-        const categoryMatch = (s.category || []).some(c =>
-          c.toLowerCase().includes(q)
-        )
-
-        const descMatch =
-          s.simpleExplanation?.en
-            ?.toLowerCase()
-            .includes(q) ||
-          s.simpleExplanation?.[lang]
-            ?.toLowerCase()
-            .includes(q)
-
-        if (!nameMatch && !categoryMatch && !descMatch) {
-          return false
-        }
-      }
-
-      // CATEGORY FILTER
-      if (categoryParam) {
-        if (
-          !(s.category || []).some(c =>
-            c.toLowerCase().includes(
-              categoryParam.toLowerCase()
-            )
-          )
-        ) {
-          return false
-        }
-      }
-
-      // STATE FILTER
-      if (stateParam && stateParam !== "All") {
-        const states = (s.states || []).map(st =>
-          st.toLowerCase()
-        )
-
-        if (
-          !states.includes("all") &&
-          !states.includes(stateParam.toLowerCase())
-        ) {
-          return false
-        }
-      }
-
-      // AGE FILTER
-      if (ageParam) {
-        const age = parseInt(ageParam)
-        const e = s.eligibility || {}
-        const min = e.minAge ?? 0
-        const max = e.maxAge ?? 120
-        if (age < min || age > max) return false
-      }
-
-      // INCOME FILTER
-      if (incomeParam) {
-        const income = parseInt(incomeParam)
-        const maxIncome = s.eligibility?.maxIncome
-        if (maxIncome && income > maxIncome) return false
-      }
-
-      // GENDER FILTER
-      if (genderParam) {
-        const g = s.eligibility?.gender
-        if (g && g.toLowerCase() !== genderParam.toLowerCase()) {
-          return false
-        }
-      }
-
-      return true
-    })
 
   return (
     <section className="max-w-7xl mx-auto px-6 pb-24">
@@ -218,6 +228,18 @@ export default function SearchResults() {
       {/* Filter Panel */}
       {filterOpen && (
         <FilterPanel
+          filters={filters}
+          onFilterChange={(key, value) =>
+            setFilters(prev => ({ ...prev, [key]: value }))
+          }
+          onClearFilters={() =>
+            setFilters({
+              age: "",
+              income: "",
+              gender: "",
+              state: "",
+            })
+          }
           onClose={() => {
             setFilterOpen(false)
             setIsOverlayOpen(false)
