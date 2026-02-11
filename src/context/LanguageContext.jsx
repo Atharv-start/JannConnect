@@ -14,6 +14,8 @@ const base = {
   heroDesc: "Discover, understand, and apply for Government and NGO schemes.",
   findSchemes: "View Schemes",
   learnMore: "Learn More",
+  brand: "JannConnect",
+
   
   
 feature1Title: "Verified Schemes",
@@ -214,6 +216,15 @@ const translations = {
     searchResults: "खोज परिणाम",
     filters: "फ़िल्टर",
     browseCategory: "श्रेणी के अनुसार ब्राउज़ करें",
+    feature1Title: "सत्यापित योजनाएँ",
+feature1Desc: "आधिकारिक सरकारी और एनजीओ डेटा",
+feature2Title: "पात्रता आधारित",
+feature2Desc: "व्यक्तिगत खोज",
+feature3Title: "सीधे आवेदन",
+feature3Desc: "कोई बिचौलिया नहीं",
+brand: "जनकनेक्ट",
+
+
 
     overview: "सारांश",
     benefits: "लाभ",
@@ -306,6 +317,15 @@ const translations = {
     heroDesc: "அரசு மற்றும் என்ஜிஓ திட்டங்களைக் கண்டறியுங்கள், புரிந்து கொள்ளுங்கள் மற்றும் விண்ணப்பிக்கவும்.",
     findSchemes: "திட்டங்களைப் பார்க்கவும்",
     browseCategory: "வகைப்படி உலாவுங்கள்",
+    feature1Title: "சரிபார்க்கப்பட்ட திட்டங்கள்",
+feature1Desc: "அதிகாரப்பூர்வ அரசு மற்றும் NGO தரவு",
+feature2Title: "தகுதி அடிப்படையில்",
+feature2Desc: "தனிப்பயன் திட்ட பரிந்துரை",
+feature3Title: "நேரடி விண்ணப்பம்",
+feature3Desc: "இடைத்தரகர் இல்லை",
+brand: "ஜன் கனெக்ட்",
+
+
     learnMore: "மேலும் அறிய",
     trust1: "✔ 1000+ திட்டங்கள்",
     trust2: "✔ மத்திய மற்றும் மாநிலம்",
@@ -337,6 +357,8 @@ const translations = {
     trust1: "✔ 1000+ పథకాలు",
     trust2: "✔ కేంద్ర & రాష్ట్ర",
     trust3: "✔ ప్రభుత్వం + NGO",
+    brand: "జన్ కనెక్ట్",
+
     aboutTitle: "గురించి",
     aboutP1: "JannConnect ఒక జాతీయ వేదిక, ఇది ప్రభుత్వం మరియు NGO పథకాలను ఒకే స్థలంలో కనుగొనడానికి సహాయపడుతుంది.",
     aboutP2: "పౌరుల అర్హత ఆధారంగా పథకం సమాచారం కనుగొనడానికి ఇది సాంకేతిక పరిష్కారం అందిస్తుంది.",
@@ -354,6 +376,8 @@ const translations = {
     searchPlaceholder: "ଯୋଜନାଗୁଡ଼ିକୁ ଖୋଜନ୍ତୁ...",
     heroTitle1: "ଯୋଜନା",
     heroTitle2: "ସହଜ",
+    brand: "ଜନ କନେକ୍ଟ",
+
     heroDesc: "ସରକାରୀ ଏବଂ ଏନଜିଓ ଯୋଜନାଗୁଡ଼ିକୁ ଖୋଜନ୍ତୁ, ବୁଝନ୍ତୁ ଏବଂ ଆବେଦନ କରନ୍ତୁ।",
     findSchemes: "ଯୋଜନା ଦେଖନ୍ତୁ",
     browseCategory: "ଶ୍ରେଣୀ ଅନୁସାରେ ବ୍ରାଉଜ୍",
@@ -376,6 +400,8 @@ const translations = {
     logout: "লগ আউট",
     greeting: "নমস্কার",
     searchPlaceholder: "স্কিম খুঁজুন...",
+    brand: "জন কানেক্ট",
+
     heroTitle1: "স্কিম",
     heroTitle2: "সহজ করা হয়েছে",
     heroDesc: "সরকারি এবং এনজিও স্কিম আবিষ্কার করুন, বুঝুন এবং আবেদন করুন।",
@@ -410,6 +436,8 @@ const translations = {
     trust2: "✔ കേന്ദ്രവും സംസ്ഥാനവും",
     trust3: "✔ സർക്കാർ + എൻജിഒ",
     aboutTitle: "കുറിച്ച്",
+    brand: "ജൻ കണക്റ്റ്",
+
     aboutP1: "JannConnect ഒരു ദേശീയ പ്ലാറ്റ്ഫോം ആണ്, ഇത് സർക്കാർ & എന്‍ജിഒ പദ്ധതികള്‍ ഒരു സൈറ്റിൽ കണ്ടെത്താൻ സഹായിക്കുന്നു.",
     aboutP2: "ഇത് പൗരരുടെ യോഗ്യതയുടെ അടിസ്ഥാനത്തിൽ പദ്ധതി വിവരങ്ങൾ കണ്ടെത്താൻ എളുപ്പമുള്ള സാങ്കേതിക പരിഹാരം നൽകുന്നു.",
     aboutP3: "പ്ലാറ്റ്ഫോം ഉപയോക്താക്കളെ ശരിയായ പദ്ധതികൾ കണ്ടെത്താൻ സഹായിക്കുകയും, അതിൽ അപേക്ഷിക്കാനുള്ള മാർഗ്ഗനിർദ്ദേശം നൽകുകയും ചെയ്യുന്നു.",
@@ -433,6 +461,8 @@ const translations = {
     trust1: "✔ 1000+ યોજનાઓ",
     trust2: "✔ કેન્દ્ર અને રાજ્ય",
     trust3: "✔ સરકાર + NGO",
+    brand: "જન કનેક્ટ",
+
     aboutTitle: "વિશે",
     aboutP1: "JannConnect એક રાષ્ટ્રીય પ્લેટફોર્મ છે જે સરકારી અને NGO યોજનાઓ એકજ જગ્યાએ શોધવાની સુવિધા આપે છે.",
     aboutP2: "આ તે નાગરિકોની પાત્રતા મુજબ યોજના માહિતી શોધવા માટે સરળ ટેકનોલોજી આધારિત સોલ્યુશન પ્રદાન કરે છે.",

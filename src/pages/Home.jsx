@@ -22,18 +22,18 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
 
-          <p className="text-green-400 font-semibold mb-3 tracking-wide">
+          <p className="text-green-500 font-semibold mb-3 tracking-wide">
             {t?.tagline || "Government & NGO Scheme Portal"}
           </p>
 
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
             {t?.heroTitle1 || "Schemes"} <br />
             <span className="text-green-500">
               {t?.heroTitle2 || "Made Easy"}
             </span>
           </h1>
 
-          <p className="mt-5 max-w-2xl mx-auto text-lg text-gray-400">
+          <p className="mt-5 max-w-2xl mx-auto text-lg text-gray-700 dark:text-gray-400">
             {t?.heroDesc ||
               "Find government and NGO schemes you are eligible for — all in one place, with simple explanations and direct application links."}
           </p>
@@ -49,7 +49,7 @@ export default function Home() {
 
             <button
               onClick={() => navigate("/about")}
-              className="px-8 py-4 border border-white/20 rounded-lg hover:bg-white/10 transition"
+              className="px-8 py-4 border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition"
             >
               {t?.learnMore || "Learn More"}
             </button>
@@ -73,9 +73,9 @@ export default function Home() {
             ].map((f, i) => (
               <div
                 key={i}
-                className="bg-white/5 border border-white/10 rounded-xl p-6 text-sm text-gray-300"
+                className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl p-6 text-sm text-gray-700 dark:text-gray-300"
               >
-                <h3 className="font-semibold text-white mb-2">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                   {f.title}
                 </h3>
                 {f.desc}
@@ -84,7 +84,7 @@ export default function Home() {
           </div>
 
           {/* Trust line */}
-          <div className="mt-10 flex flex-wrap justify-center gap-8 text-sm text-gray-400">
+          <div className="mt-10 flex flex-wrap justify-center gap-8 text-sm text-gray-700 dark:text-gray-400">
             <span>{t?.trust1 || "✔ 50+ Schemes"}</span>
             <span>{t?.trust2 || "✔ Central & State"}</span>
             <span>{t?.trust3 || "✔ Government + NGO"}</span>
