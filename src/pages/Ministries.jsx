@@ -1,8 +1,12 @@
+import { useLanguage } from "../context/LanguageContext"
+
 export default function Ministries() {
+  const { t } = useLanguage()
+
   return (
     <section className="max-w-4xl mx-auto px-6 py-24">
       <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-        Ministries
+        {t.ministries}
       </h1>
 
       <ul className="space-y-3 text-gray-700 dark:text-white/80">

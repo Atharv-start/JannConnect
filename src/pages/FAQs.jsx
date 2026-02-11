@@ -1,30 +1,12 @@
 import { useState } from "react"
+import { useLanguage } from "../context/LanguageContext"
 
 export default function FAQs() {
+  const { t } = useLanguage()
   const [openIndex, setOpenIndex] = useState(null)
 
-  const faqs = [
-    {
-      q: "What is JannConnect?",
-      a: "JannConnect is a platform that helps citizens easily find government and NGO schemes in one place.",
-    },
-    {
-      q: "How will JannConnect help common citizens?",
-      a: "It simplifies scheme discovery by showing eligibility, benefits, required documents, and application steps in one place.",
-    },
-    {
-      q: "Can I apply for schemes through JannConnect?",
-      a: "JannConnect provides official application links. Applications are completed on the official scheme portals.",
-    },
-    {
-      q: "How does JannConnect work?",
-      a: "You can search or filter schemes based on your profile. The platform then shows schemes you may be eligible for.",
-    },
-    {
-      q: "What information can I find about a scheme?",
-      a: "You can see benefits, eligibility, documents required, and step-by-step application instructions.",
-    },
-  ]
+  // Safe fallback for faqs array
+  const faqs = Array.isArray(t?.faqs) ? t.faqs : []
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
@@ -40,45 +22,51 @@ export default function FAQs() {
 
       {/* FAQ content */}
       <div>
-        <p className="text-gray-400 mb-2">
-          Frequently Asked Questions
+        <p className="text-gray-400 mb-2 dark:text-gray-300">
+          {t?.faqLabel || "Have Questions?"}
         </p>
 
-        <h1 className="text-4xl font-bold mb-8">
-          Checkout our knowledge base for some of your answers!
+        <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+          {t?.faqHeading || "Frequently Asked Questions"}
         </h1>
 
         <div className="space-y-4">
-          {faqs.map((item, index) => (
-            <div
-              key={index}
-              className="border-b border-white/10 pb-4"
-            >
-              <button
-                onClick={() =>
-                  setOpenIndex(
-                    openIndex === index ? null : index
-                  )
-                }
-                className="w-full flex justify-between items-center text-left font-semibold"
+          {faqs && faqs.length > 0 ? (
+            faqs.map((item, index) => (
+              <div
+                key={index}
+                className="border-b border-gray-300 dark:border-white/10 pb-4"
               >
-                {item.q}
-                <span>
-                  {openIndex === index ? "−" : "+"}
-                </span>
-              </button>
+                <button
+                  onClick={() =>
+                    setOpenIndex(
+                      openIndex === index ? null : index
+                    )
+                  }
+                  className="w-full flex justify-between items-center text-left font-semibold text-gray-900 dark:text-white hover:text-green-500 dark:hover:text-green-400 transition"
+                >
+                  {item?.q || "Question"}
+                  <span>
+                    {openIndex === index ? "−" : "+"}
+                  </span>
+                </button>
 
-              {openIndex === index && (
-                <p className="mt-2 text-gray-400">
-                  {item.a}
-                </p>
-              )}
-            </div>
-          ))}
+                {openIndex === index && (
+                  <p className="mt-2 text-gray-700 dark:text-gray-300">
+                    {item?.a || "Answer"}
+                  </p>
+                )}
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-500 dark:text-gray-400">
+              {t?.noFaqs || "No FAQs available"}
+            </p>
+          )}
         </div>
 
-        <button className="mt-8 px-6 py-3 border border-white/30 rounded-lg hover:bg-white/10 transition">
-          View More →
+        <button className="mt-8 px-6 py-3 border border-gray-300 dark:border-white/30 rounded-lg bg-white dark:bg-slate-900 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/10 transition font-medium">
+          {t?.viewMore || "View More"} →
         </button>
       </div>
     </section>

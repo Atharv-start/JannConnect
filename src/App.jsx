@@ -21,37 +21,41 @@ import GovernmentSchemes from "./pages/GovernmentSchemes"
 import Onboarding from "./pages/Onboarding"
 import Dashboard from "./pages/Dashboard"
 
+import { LanguageProvider } from "./context/LanguageContext"
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout><Home /></Layout>} />
-        <Route path="/search" element={<Layout><SearchResults /></Layout>} />
-        <Route path="/scheme/:id" element={<Layout><SchemeDetails /></Layout>} />
-        <Route path="/about" element={<Layout><About /></Layout>} />
-        <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
-        <Route path="/disclaimer" element={<Layout><Disclaimer /></Layout>} />
-        <Route path="/signin" element={<Layout><SignIn /></Layout>} />
+    <LanguageProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout><Home /></Layout>} />
+          <Route path="/search" element={<Layout><SearchResults /></Layout>} />
+          <Route path="/scheme/:id" element={<Layout><SchemeDetails /></Layout>} />
+          <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
+          <Route path="/disclaimer" element={<Layout><Disclaimer /></Layout>} />
+          <Route path="/signin" element={<Layout><SignIn /></Layout>} />
 
-        {/* Onboarding & Dashboard */}
-        <Route path="/onboarding" element={<Layout><Onboarding /></Layout>} />
-        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+          {/* Onboarding & Dashboard */}
+          <Route path="/onboarding" element={<Layout><Onboarding /></Layout>} />
+          <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
 
-        {/* Support */}
-        <Route path="/help" element={<Layout><Help /></Layout>} />
-        <Route path="/faqs" element={<Layout><FAQs /></Layout>} />
-        <Route path="/feedback" element={<Layout><Feedback /></Layout>} />
-        <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          {/* Support */}
+          <Route path="/help" element={<Layout><Help /></Layout>} />
+          <Route path="/faqs" element={<Layout><FAQs /></Layout>} />
+          <Route path="/feedback" element={<Layout><Feedback /></Layout>} />
+          <Route path="/contact" element={<Layout><Contact /></Layout>} />
 
-        {/* Government */}
-        <Route path="/ministries" element={<Layout><Ministries /></Layout>} />
-        <Route path="/departments" element={<Layout><Departments /></Layout>} />
-        <Route path="/states" element={<Layout><States /></Layout>} />
-        <Route path="/government-schemes" element={<Layout><GovernmentSchemes /></Layout>} />
+          {/* Government */}
+          <Route path="/ministries" element={<Layout><Ministries /></Layout>} />
+          <Route path="/departments" element={<Layout><Departments /></Layout>} />
+          <Route path="/states" element={<Layout><States /></Layout>} />
+          <Route path="/government-schemes" element={<Layout><GovernmentSchemes /></Layout>} />
 
-        {/* Voice Features */}
-        <Route path="/voice" element={<Layout><VoiceFeatures /></Layout>} />
-      </Routes>
-    </BrowserRouter>
+          {/* Voice Features */}
+          <Route path="/voice" element={<Layout><VoiceFeatures /></Layout>} />
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   )
 }

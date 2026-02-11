@@ -37,7 +37,7 @@ export default function Navbar() {
       window.SpeechRecognition || window.webkitSpeechRecognition
 
     if (!SpeechRecognition) {
-      alert("Voice search not supported in this browser")
+      alert(t.voiceNotSupported)
       return
     }
 
@@ -50,7 +50,6 @@ export default function Navbar() {
       const text = event.results[0][0].transcript
       setQuery(text)
       setIsListening(false)
-
       navigate(`/search?q=${text}`)
     }
 
@@ -70,7 +69,6 @@ export default function Navbar() {
             backdrop-blur-xl
             shadow-lg
             transition-all duration-500
-
             ${
               theme === "dark"
                 ? "bg-white/10 border border-white/20 text-white"
@@ -80,14 +78,13 @@ export default function Navbar() {
         >
           {/* Logo */}
           <div
-  onClick={() => navigate("/")}
-  className={`font-bold text-lg cursor-pointer whitespace-nowrap ${
-    theme === "dark" ? "text-white" : "text-gray-900"
-  }`}
->
-  {t.brand}
-</div>
-
+            onClick={() => navigate("/")}
+            className={`font-bold text-lg cursor-pointer whitespace-nowrap ${
+              theme === "dark" ? "text-white" : "text-gray-900"
+            }`}
+          >
+            {t.brand}
+          </div>
 
           {/* Search */}
           <form
@@ -127,9 +124,9 @@ export default function Navbar() {
             </button>
           </form>
 
-          {/* Right */}
+          {/* Right side */}
           <div className="flex items-center gap-3 transition-all duration-500">
-            {/* Theme */}
+            {/* Theme toggle */}
             <button
               onClick={toggleTheme}
               className={`w-9 h-9 rounded-full flex items-center justify-center ${
@@ -144,7 +141,7 @@ export default function Navbar() {
               />
             </button>
 
-            {/* Language */}
+            {/* Language button */}
             <button
               onClick={() => setLangOpen(true)}
               className={`px-3 py-1 rounded-full text-sm flex items-center gap-2 whitespace-nowrap transition-all ${
@@ -157,9 +154,9 @@ export default function Navbar() {
               {lang.toUpperCase()}
             </button>
 
-            {/* Auth */}
+            {/* Auth section */}
             {user ? (
-              <div className="flex items-center gap-2 animate-fade-in">
+              <div className="flex items-center gap-2">
                 <div
                   className={`flex items-center gap-1 text-sm whitespace-nowrap ${
                     theme === "dark" ? "text-white" : "text-gray-800"

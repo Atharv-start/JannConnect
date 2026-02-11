@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { useLanguage } from "../context/LanguageContext"
 
 export default function FilterPanel({
   filters,
@@ -6,6 +7,7 @@ export default function FilterPanel({
   onClearFilters,
   onClose,
 }) {
+  const { t } = useLanguage()
   const navigate = useNavigate()
 
   function applyFilters(e) {
@@ -23,7 +25,7 @@ export default function FilterPanel({
       <div className="w-full max-w-sm bg-white dark:bg-slate-900 h-full p-6 overflow-y-auto text-gray-900 dark:text-white">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold">
-            Filters
+            {t.filters}
           </h2>
           <button onClick={onClose} className="text-xl">
             ✕
@@ -34,11 +36,11 @@ export default function FilterPanel({
           {/* Age */}
           <div>
             <label className="block text-sm mb-1">
-              Age
+              {t.age}
             </label>
             <input
               type="number"
-              placeholder="Enter age"
+              placeholder={t.enterAge}
               value={filters.age}
               onChange={e =>
                 onFilterChange("age", e.target.value)
@@ -50,11 +52,11 @@ export default function FilterPanel({
           {/* Income */}
           <div>
             <label className="block text-sm mb-1">
-              Annual Income (₹)
+              {t.annualIncome}
             </label>
             <input
               type="number"
-              placeholder="Enter income"
+              placeholder={t.enterIncome}
               value={filters.income}
               onChange={e =>
                 onFilterChange("income", e.target.value)
@@ -66,7 +68,7 @@ export default function FilterPanel({
           {/* Gender */}
           <div>
             <label className="block text-sm mb-1">
-              Gender
+              {t.gender}
             </label>
             <select
               value={filters.gender}
@@ -75,16 +77,16 @@ export default function FilterPanel({
               }
               className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
             >
-              <option value="">Any Gender</option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
+              <option value="">{t.anyGender}</option>
+              <option value="female">{t.female}</option>
+              <option value="male">{t.male}</option>
             </select>
           </div>
 
           {/* State */}
           <div>
             <label className="block text-sm mb-1">
-              State / Coverage
+              {t.statesUTs}
             </label>
             <select
               value={filters.state}
@@ -94,7 +96,7 @@ export default function FilterPanel({
               className="w-full px-3 py-2 rounded bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white"
             >
               <option value="">
-                All India (Central Schemes)
+                {t.allIndiaCentral}
               </option>
               <option value="Delhi">Delhi</option>
               <option value="Sikkim">Sikkim</option>
@@ -112,16 +114,16 @@ export default function FilterPanel({
             type="submit"
             className="w-full bg-green-500 text-black py-2 rounded font-semibold"
           >
-            Apply Filters
+            {t.applyFilters}
           </button>
 
           {/* Clear */}
           <button
             type="button"
             onClick={handleClearFilters}
-            className="w-full border border-gray-300 dark:border-white/20 py-2 rounded"
+            className="w-full bg-gray-400 dark:bg-slate-700 text-gray-900 dark:text-white py-2 rounded"
           >
-            Clear All Filters
+            {t.clearFilters}
           </button>
         </form>
       </div>

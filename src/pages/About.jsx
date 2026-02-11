@@ -1,33 +1,31 @@
+import { useLanguage } from "../context/LanguageContext"
+
 export default function About() {
+  const { t } = useLanguage()
+
   return (
     <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
       
       {/* Text content */}
       <div>
         <h1 className="text-4xl font-bold text-green-500 mb-6">
-          About
+          {t.aboutTitle}
         </h1>
 
         <p className="text-gray-300 leading-relaxed mb-4">
-          JannConnect is a National Platform that aims to offer
-          one-stop search and discovery of Government and NGO
-          schemes.
+          {t.aboutP1}
         </p>
 
         <p className="text-gray-300 leading-relaxed mb-4">
-          It provides a simple, technology-based solution to
-          discover scheme information based on the eligibility
-          of the citizen.
+          {t.aboutP2}
         </p>
 
         <p className="text-gray-300 leading-relaxed mb-4">
-          The platform helps users find the right schemes for
-          them and also guides them on how to apply for each
-          scheme without visiting multiple government websites.
+          {t.aboutP3}
         </p>
 
         <button className="mt-6 px-6 py-3 border border-white/30 rounded-lg hover:bg-white/10 transition">
-          View More →
+          {t.viewMore}
         </button>
       </div>
 

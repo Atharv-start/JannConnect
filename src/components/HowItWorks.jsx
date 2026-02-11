@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useLanguage } from "../context/LanguageContext"
 
 // 👉 Add your images (8 total)
 import img1 from "../assets/carousel/banner_1.jpg"
@@ -22,6 +23,7 @@ const images = [
 ]
 
 export default function HowItWorks() {
+  const { t } = useLanguage()
   const [index, setIndex] = useState(0)
 
   // 🔁 Auto slide (unchanged)
@@ -39,7 +41,7 @@ export default function HowItWorks() {
 
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold mb-10">
-          Schemes That Change Lives
+          {t.schemesHeading}
         </h2>
 
         {/* Carousel container */}
