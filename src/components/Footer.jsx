@@ -14,33 +14,32 @@ export default function Footer() {
         {/* About */}
         <div>
           <h3 className="text-white font-semibold mb-3">
-            JannConnect
+            {t.brand}
           </h3>
           <p>
-            JannConnect is a National Platform that aims to offer one-stop
-            search and discovery of the Government schemes.
+            {t.aboutP1}
           </p>
         </div>
 
         {/* Important Links */}
         <div>
           <h3 className="text-white font-semibold mb-3">
-            Important Links
+            {t.importantLinks}
           </h3>
           <ul className="space-y-2">
             <li>
               <Link to="/about" className={linkStyle}>
-                About Us
+                {t.aboutUs}
               </Link>
             </li>
             <li>
               <Link to="/privacy" className={linkStyle}>
-                Privacy Policy
+                {t.privacyPolicy}
               </Link>
             </li>
             <li>
               <Link to="/disclaimer" className={linkStyle}>
-                Disclaimer
+                {t.disclaimer}
               </Link>
             </li>
           </ul>
@@ -49,27 +48,27 @@ export default function Footer() {
         {/* Government */}
         <div>
           <h3 className="text-white font-semibold mb-3">
-            Government
+            {t.government}
           </h3>
           <ul className="space-y-2">
             <li>
               <Link to="/ministries" className={linkStyle}>
-                Ministries
+                {t.ministries}
               </Link>
             </li>
             <li>
               <Link to="/departments" className={linkStyle}>
-                Departments
+                {t.departments}
               </Link>
             </li>
             <li>
               <Link to="/states" className={linkStyle}>
-                States / UTs
+                {t.statesUTs}
               </Link>
             </li>
             <li>
               <Link to="/government-schemes" className={linkStyle}>
-                Government Schemes
+                {t.governmentSchemes}
               </Link>
             </li>
           </ul>
@@ -78,12 +77,12 @@ export default function Footer() {
         {/* Support */}
         <div>
           <h3 className="text-white font-semibold mb-3">
-            Support
+            {t.supportLabel}
           </h3>
           <ul className="space-y-2">
             <li>
               <Link to="/help" className={linkStyle}>
-                Help
+                {t.help}
               </Link>
             </li>
             <li>
@@ -93,12 +92,12 @@ export default function Footer() {
             </li>
             <li>
               <Link to="/feedback" className={linkStyle}>
-                Feedback
+                {t.feedback}
               </Link>
             </li>
             <li>
               <Link to="/contact" className={linkStyle}>
-                Contact Us
+                {t.contactUs}
               </Link>
             </li>
           </ul>
@@ -106,7 +105,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10 text-center py-4 text-xs text-white/50">
-        © 2026 JannConnect
+        {t.copyRight}
       </div>
     </footer>
   )

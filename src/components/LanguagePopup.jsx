@@ -1,7 +1,7 @@
 import { useLanguage } from "../context/LanguageContext"
 
 export default function LanguagePopup({ onClose }) {
-  const { changeLanguage, lang } = useLanguage()
+  const { changeLanguage, lang, t } = useLanguage()
 
   const languages = [
     { code: "en", name: "English" },
@@ -9,6 +9,10 @@ export default function LanguagePopup({ onClose }) {
     { code: "mr", name: "मराठी" },
     { code: "ta", name: "தமிழ்" },
     { code: "te", name: "తెలుగు" },
+    { code: "or", name: "ଓଡ଼ିଆ" },
+    { code: "bn", name: "বাংলা" },
+    { code: "ml", name: "മലയാളം" },
+    { code: "gu", name: "ગુજરાતી" },
   ]
 
   function selectLang(langCode) {
@@ -20,7 +24,7 @@ export default function LanguagePopup({ onClose }) {
     <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
       <div className="bg-white dark:bg-slate-900 text-black dark:text-white rounded-lg p-6 w-64">
         <h2 className="text-lg font-semibold mb-4">
-          Select Language
+          {t.selectLanguage}
         </h2>
 
         <div className="space-y-3">
@@ -43,7 +47,7 @@ export default function LanguagePopup({ onClose }) {
           onClick={onClose}
           className="mt-4 w-full py-2 bg-gray-300 dark:bg-slate-600 rounded"
         >
-          Close
+          {t.close}
         </button>
       </div>
     </div>

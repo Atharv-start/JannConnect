@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
+import { useLanguage } from "../context/LanguageContext"
 import { createUser, verifyUser } from "../services/userService"
 
 export default function SignIn() {
+  const { t } = useLanguage()
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -48,7 +50,7 @@ export default function SignIn() {
   return (
     <section className="max-w-md mx-auto px-6 py-32">
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">
-        {isRegister ? "Register" : "Sign In"}
+        {isRegister ? t.register : t.signIn}
       </h1>
 
       <form
@@ -58,7 +60,7 @@ export default function SignIn() {
         {isRegister && (
           <div>
             <label className="block text-sm mb-1">
-              Full Name
+              {t.fullName}
             </label>
             <input
               type="text"
@@ -72,7 +74,7 @@ export default function SignIn() {
 
         <div>
           <label className="block text-sm mb-1">
-            Email Address
+            {t.emailAddress}
           </label>
           <input
             type="email"
@@ -85,7 +87,7 @@ export default function SignIn() {
 
         <div>
           <label className="block text-sm mb-1">
-            Password
+            {t.password}
           </label>
           <input
             type="password"
@@ -106,16 +108,14 @@ export default function SignIn() {
           type="submit"
           className="w-full mt-4 px-4 py-2 bg-green-500 text-black rounded font-semibold"
         >
-          {isRegister ? "Register" : "Sign In"}
+          {isRegister ? t.register : t.signIn}
         </button>
 
         <p
           className="text-center text-sm text-gray-500 dark:text-gray-400 cursor-pointer"
           onClick={() => setIsRegister(!isRegister)}
         >
-          {isRegister
-            ? "Already have an account? Sign in"
-            : "New user? Register"}
+          {isRegister ? t.alreadyHaveAccount : t.newUser}
         </p>
       </form>
     </section>

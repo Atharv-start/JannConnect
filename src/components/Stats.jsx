@@ -5,15 +5,15 @@ export default function Stats() {
 
   const stats = [
     {
-      value: "4590+",
+      value: "50+",
       label: t.statsTotal,
     },
     {
-      value: "590+",
+      value: "30+",
       label: t.statsCentral,
     },
     {
-      value: "40+",
+      value: "10+",
       label: t.statsStates,
     },
   ]
