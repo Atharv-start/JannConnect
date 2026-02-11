@@ -80,13 +80,14 @@ export default function Navbar() {
         >
           {/* Logo */}
           <div
-            onClick={() => navigate("/")}
-            className={`font-bold text-lg cursor-pointer whitespace-nowrap ${
-              theme === "dark" ? "text-white" : "text-gray-900"
-            }`}
-          >
-            <span className="text-green-400">Jann</span>Connect
-          </div>
+  onClick={() => navigate("/")}
+  className={`font-bold text-lg cursor-pointer whitespace-nowrap ${
+    theme === "dark" ? "text-white" : "text-gray-900"
+  }`}
+>
+  {t.brand}
+</div>
+
 
           {/* Search */}
           <form
