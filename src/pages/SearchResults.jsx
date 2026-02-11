@@ -27,6 +27,10 @@ export default function SearchResults() {
   const [searchParams] = useSearchParams()
   const queryParam = searchParams.get("q")
   const categoryParam = searchParams.get("category")
+  const ageParam = searchParams.get("age")
+  const incomeParam = searchParams.get("income")
+  const genderParam = searchParams.get("gender")
+  const stateParam = searchParams.get("state")
 
   useEffect(() => {
     async function fetchSchemes() {
