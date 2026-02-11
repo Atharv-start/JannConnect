@@ -4,10 +4,11 @@ import { getAllSchemes } from "../services/schemesService"
 import { useLanguage } from "../context/LanguageContext"
 
 export default function NGOSchemes() {
-  const navigate = useNavigate()
   const { t } = useLanguage()
+  const navigate = useNavigate()
   const [schemes, setSchemes] = useState([])
   const [loading, setLoading] = useState(true)
+
 
   useEffect(() => {
     async function fetchSchemes() {

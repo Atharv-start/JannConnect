@@ -12,7 +12,14 @@ export default function Home() {
   const navigate = useNavigate()
 
   return (
-    <div className="space-y-28">
+<div className="space-y-28">
+  {/* Hero */}
+  <section className="max-w-7xl mx-auto px-6 pt-24 text-center">
+    <h1 className="text-5xl font-bold leading-tight text-gray-900 dark:text-white">
+      {t.heroTitle1} <br />
+      <span className="text-green-500">{t.heroTitle2}</span>
+    </h1>
+  </section>
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-32 text-center">

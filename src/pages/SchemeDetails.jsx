@@ -143,7 +143,9 @@ export default function SchemeDetails() {
         )}
 
         {activeTab === "benefits" && (
-          <p>{scheme.benefits}</p>
+          <p>
+            {scheme.benefits?.[lang] || scheme.benefits?.en || t.noBenefits}
+          </p>
         )}
 
         {activeTab === "eligibility" && (

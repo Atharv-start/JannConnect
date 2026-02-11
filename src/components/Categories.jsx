@@ -8,8 +8,8 @@ import WomenChild from "../assets/icons/WomenChild.svg"
 import Employment from "../assets/icons/Employment.svg"
 
 export default function Categories() {
-  const navigate = useNavigate()
   const { t } = useLanguage()
+  const navigate = useNavigate()
 
   const categories = [
     { id: "Agriculture", key: "agriculture", icon: Agriculture },
